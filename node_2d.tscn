@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://cjspsg8mxop04"]
+[gd_scene load_steps=2 format=3 uid="uid://cjspsg8mxop04"]
+
+[ext_resource type="Texture2D" uid="uid://234sj36vdu2e" path="res://assets/sprites/salon.png" id="1_wtcfe"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wtcfe")
