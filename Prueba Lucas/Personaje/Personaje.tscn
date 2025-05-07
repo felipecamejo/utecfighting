@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdgujmoio1443"]
+
+[ext_resource type="Script" uid="uid://bopuq0v66uvh6" path="res://Personaje/Personaje.gd" id="1_diry1"]
+[ext_resource type="Texture2D" uid="uid://cjjtlmfo5l11m" path="res://imagenes/se cubre completo sin raya negra.png" id="1_rqmaa"]
+[ext_resource type="Texture2D" uid="uid://dnw7fsa8urhv4" path="res://imagenes/completo-sinfondo.png" id="2_jnov3"]
+[ext_resource type="Texture2D" uid="uid://uc8ev5pf4k1t" path="res://imagenes/piña.png" id="3_i8xir"]
+[ext_resource type="Texture2D" uid="uid://nfx0crquhfpw" path="res://imagenes/piña izq.png" id="4_fc0wv"]
+[ext_resource type="Texture2D" uid="uid://y083q7vsy1al" path="res://imagenes/blanco-removebg-preview.png" id="6_0r3kb"]
+[ext_resource type="Texture2D" uid="uid://c4rwlycu8qmxx" path="res://imagenes/blanco-removebg-preview2.png" id="7_b262r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uapo"]
+size = Vector2(10.2678, 11.6993)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imife"]
+size = Vector2(8.97436, 15.4732)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypkhl"]
+size = Vector2(55, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqmqt"]
+
+[node name="Personaje" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_diry1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, 19)
+scale = Vector2(1.63667, 1.18158)
+texture = ExtResource("2_jnov3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(6, 7)
+scale = Vector2(1.89833, 1.34342)
+texture = ExtResource("3_i8xir")
+
+[node name="Hitbox" type="Area2D" parent="Sprite2D2"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Hitbox"]
+position = Vector2(2.63389, -37.2184)
+shape = SubResource("RectangleShape2D_2uapo")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 10)
+scale = Vector2(1.95, 1.27895)
+texture = ExtResource("4_fc0wv")
+
+[node name="Hitbox2" type="Area2D" parent="Sprite2D3"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D3/Hitbox2"]
+position = Vector2(-3.58974, -35.967)
+shape = SubResource("RectangleShape2D_imife")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-0.999992, 4)
+scale = Vector2(1.86, 1.39474)
+texture = ExtResource("1_rqmaa")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 20)
+scale = Vector2(0.29875, 0.2615)
+texture = ExtResource("6_0r3kb")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 16)
+scale = Vector2(0.3245, 0.252)
+texture = ExtResource("7_b262r")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(3, 67)
+shape = SubResource("RectangleShape2D_ypkhl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_rqmqt")

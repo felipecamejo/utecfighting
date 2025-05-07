@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+prueba/icon.svg
+prueba/icon.svg.import
+Prueba Lucas/icon.svg
+Prueba Lucas/icon.svg.import

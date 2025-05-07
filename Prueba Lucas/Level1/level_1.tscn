@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs58qra01nbkw"]
+
+[ext_resource type="PackedScene" uid="uid://bttqntqo3sq50" path="res://escena pelea/static_body_2d.tscn" id="1_im851"]
+[ext_resource type="PackedScene" uid="uid://bdgujmoio1443" path="res://Personaje/Personaje.tscn" id="2_5mv53"]
+[ext_resource type="PackedScene" uid="uid://d4e4o77rj8m62" path="res://Contrincante/Contrincante.tscn" id="3_5mv53"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="EscenarioPelea" parent="." instance=ExtResource("1_im851")]
+position = Vector2(563, 322)
+scale = Vector2(0.6, 0.6)
+
+[node name="contrincante" parent="." instance=ExtResource("3_5mv53")]
+position = Vector2(429, 387)
+scale = Vector2(1.3, 1.3)
+
+[node name="personaje" parent="." instance=ExtResource("2_5mv53")]
+position = Vector2(184, 482)
+scale = Vector2(1.3, 1.3)
+movimiento = 200

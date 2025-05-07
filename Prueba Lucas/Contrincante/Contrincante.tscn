@@ -1,0 +1,236 @@
+[gd_scene load_steps=14 format=3 uid="uid://d4e4o77rj8m62"]
+
+[ext_resource type="Texture2D" uid="uid://c1g83me05205f" path="res://imagenes/isra_posicion-sinfondo.png" id="1_1p7jx"]
+[ext_resource type="Script" uid="uid://cuvs2707nvtrq" path="res://Contrincante/Contrincante.gd" id="1_qye8d"]
+[ext_resource type="Texture2D" uid="uid://clhobq1n06dfr" path="res://imagenes/isra_golpe-sin fondo.png" id="2_hp0jv"]
+[ext_resource type="Texture2D" uid="uid://dwf16t8x15wst" path="res://imagenes/isra_posicion_2sin fondo.png" id="3_aof8s"]
+[ext_resource type="Texture2D" uid="uid://b4n8qtqycej3b" path="res://imagenes/isra_bloqueo-removebg-preview.png" id="5_4tyn7"]
+[ext_resource type="Texture2D" uid="uid://koyi7588t2ub" path="res://imagenes/isra_larecibe-removebg-preview.png" id="6_71uap"]
+
+[sub_resource type="Animation" id="Animation_4tyn7"]
+resource_name = "MeLaDieron"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IsraPosicion-sinfondo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IsraLaRecibe:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_qye8d"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IsraPosicion-sinfondo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11.75, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Isra2daPosicion:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IsraPosicion-sinfondo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IsraGolpe-sinfondo:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IsraLaRecibe:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hp0jv"]
+resource_name = "Reposo"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IsraPosicion-sinfondo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IsraGolpe-sinfondo:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ni243"]
+resource_name = "golpe"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("IsraPosicion-sinfondo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11.75, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Isra2daPosicion:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IsraPosicion-sinfondo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tyn7"]
+_data = {
+&"MeLaDieron": SubResource("Animation_4tyn7"),
+&"RESET": SubResource("Animation_qye8d"),
+&"Reposo": SubResource("Animation_hp0jv"),
+&"golpe": SubResource("Animation_ni243")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qye8d"]
+size = Vector2(15.375, 13.0156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tyn7"]
+size = Vector2(21, 18)
+
+[node name="Contrincante" type="CharacterBody2D"]
+position = Vector2(-9, -12)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_qye8d")
+
+[node name="IsraPosicion-sinfondo" type="Sprite2D" parent="."]
+position = Vector2(11.75, 12)
+scale = Vector2(1.47959, 1.25532)
+texture = ExtResource("1_1p7jx")
+
+[node name="IsraGolpe-sinfondo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 14)
+scale = Vector2(1.48077, 1.27174)
+texture = ExtResource("2_hp0jv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4tyn7")
+}
+
+[node name="Isra2daPosicion" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(9, 13)
+scale = Vector2(1.45, 1.26685)
+texture = ExtResource("3_aof8s")
+
+[node name="IsraCubre" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(10, 11)
+scale = Vector2(1.50581, 1.26111)
+texture = ExtResource("5_4tyn7")
+
+[node name="IsraLaRecibe" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(6, 11)
+scale = Vector2(1.57075, 1.20115)
+texture = ExtResource("6_71uap")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["Enemigos"]]
+position = Vector2(8, -9)
+shape = SubResource("RectangleShape2D_qye8d")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(9, -25)
+collision_layer = 12
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -7)
+shape = SubResource("RectangleShape2D_4tyn7")
