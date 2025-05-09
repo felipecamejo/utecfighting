@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4e4o77rj8m62"]
+[gd_scene load_steps=15 format=3 uid="uid://d4e4o77rj8m62"]
 
 [ext_resource type="Texture2D" uid="uid://c1g83me05205f" path="res://imagenes/isra_posicion-sinfondo.png" id="1_1p7jx"]
 [ext_resource type="Script" uid="uid://cuvs2707nvtrq" path="res://Contrincante/Contrincante.gd" id="1_qye8d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwf16t8x15wst" path="res://imagenes/isra_posicion_2sin fondo.png" id="3_aof8s"]
 [ext_resource type="Texture2D" uid="uid://b4n8qtqycej3b" path="res://imagenes/isra_bloqueo-removebg-preview.png" id="5_4tyn7"]
 [ext_resource type="Texture2D" uid="uid://koyi7588t2ub" path="res://imagenes/isra_larecibe-removebg-preview.png" id="6_71uap"]
+[ext_resource type="Script" uid="uid://dtvpnu0ef182p" path="res://Contrincante/hurtbox.gd" id="7_4tyn7"]
 
 [sub_resource type="Animation" id="Animation_4tyn7"]
 resource_name = "MeLaDieron"
@@ -177,15 +178,15 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qye8d"]
-size = Vector2(15.375, 13.0156)
+size = Vector2(24, 21.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tyn7"]
-size = Vector2(21, 18)
+size = Vector2(44.5, 33)
 
-[node name="Contrincante" type="CharacterBody2D"]
+[node name="Contrincante" type="CharacterBody2D" groups=["Enemigos"]]
 position = Vector2(-9, -12)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 3
 script = ExtResource("1_qye8d")
 
 [node name="IsraPosicion-sinfondo" type="Sprite2D" parent="."]
@@ -223,14 +224,16 @@ scale = Vector2(1.57075, 1.20115)
 texture = ExtResource("6_71uap")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["Enemigos"]]
-position = Vector2(8, -9)
+position = Vector2(11, -31)
 shape = SubResource("RectangleShape2D_qye8d")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(9, -25)
-collision_layer = 12
-collision_mask = 5
+collision_layer = 4
+collision_mask = 4
+monitoring = false
+script = ExtResource("7_4tyn7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-0.5, -7)
+position = Vector2(1, 8)
 shape = SubResource("RectangleShape2D_4tyn7")

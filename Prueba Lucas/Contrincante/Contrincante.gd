@@ -1,3 +1,4 @@
+class_name Contrincante
 extends CharacterBody2D
 '''
 IDLE → esperando
@@ -18,6 +19,7 @@ var personaje : Node2D
 func _ready():
 	personaje = get_parent().get_node("personaje")
 	randomize()
+	print("Hurtbox global:", $Hurtbox.global_position)
 	
 
 func _physics_process(_delta):
@@ -48,13 +50,13 @@ func _physics_process(_delta):
 			$"IsraPosicion-sinfondo".visible = false
 			#$Isra2daPosicion.visible = false
 			$IsraCubre.visible = true
-			await get_tree().create_timer(0.8)
+			await get_tree().create_timer(0.8).timeout
 			current_state = State.MOVE
 		State.HIT:
 			$"IsraPosicion-sinfondo".visible = false
 			$Isra2daPosicion.visible = false
 			$IsraLaRecibe.visible = true
-			await get_tree().create_timer(0.5)
+			await get_tree().create_timer(0.5).timeout
 			current_state = State.MOVE
 
 func move_towards_player(_delta):
@@ -66,7 +68,7 @@ func move_towards_player(_delta):
 func perform_attack():
 	velocity = Vector2.ZERO
 	$AnimationPlayer.play("Reposo")
-	await get_tree().create_timer(0.7)
+	await get_tree().create_timer(0.7).timeout
 	current_state = State.MOVE
 
 func get_hit():
@@ -78,7 +80,7 @@ func get_hit():
 	# Animación y tiempo de recuperación
 	$IsraLaRecibe.visible = true
 	$"IsraPosicion-sinfondo".visible = false
-	await get_tree().create_timer(0.5) # Tiempo de impacto
+	await get_tree().create_timer(0.5).timeout # Tiempo de impacto
 	
 	# Volver a estado MOVE solo si sigue en HIT
 	if current_state == State.HIT:
