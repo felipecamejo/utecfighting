@@ -11,9 +11,10 @@ HIT → retrocediendo al ser golpeado
 enum State { IDLE, MOVE, ATTACK, BLOCK, HIT }
 var current_state = State.IDLE
 
+@export var team: int = 2
 @export var speed = 100
 @export var attack_distance = 50
-@export var block_chance = 0.3  # 30% probabilidad de bloquear
+@export var block_chance = 0.3 # 30% probabilidad de bloquear
 var personaje : Node2D
 
 func _ready():
@@ -41,11 +42,12 @@ func _physics_process(_delta):
 			if distance <= attack_distance:
 				current_state = State.ATTACK
 		State.ATTACK:
-			$"IsraPosicion-sinfondo".visible = false
-			#$Isra2daPosicion.visible = false
-			$"IsraGolpe-sinfondo".visible = true
-			if distance > attack_distance:
-				current_state = State.MOVE
+			if current_state != State.MOVE:
+				$"IsraPosicion-sinfondo".visible = false
+				#$Isra2daPosicion.visible = false
+				$"IsraGolpe-sinfondo".visible = true
+				if distance > attack_distance:
+					current_state = State.MOVE
 		State.BLOCK:
 			$"IsraPosicion-sinfondo".visible = false
 			#$Isra2daPosicion.visible = false
@@ -56,7 +58,7 @@ func _physics_process(_delta):
 			$"IsraPosicion-sinfondo".visible = false
 			$Isra2daPosicion.visible = false
 			$IsraLaRecibe.visible = true
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(1.0).timeout
 			current_state = State.MOVE
 
 func move_towards_player(_delta):
@@ -72,10 +74,13 @@ func perform_attack():
 	current_state = State.MOVE
 
 func get_hit():
+	current_state = State.HIT
 	# Mejorar la reacción física
 	var knockback_direction = (global_position - personaje.global_position).normalized()
 	velocity = knockback_direction * 200 # Aumentar fuerza retroceso
 	move_and_slide()
+	await get_tree().create_timer(1.3).timeout
+	current_state = State.MOVE
 	
 	# Animación y tiempo de recuperación
 	$IsraLaRecibe.visible = true
@@ -86,22 +91,15 @@ func get_hit():
 	if current_state == State.HIT:
 		current_state = State.MOVE
 	
-	'''velocity = -(personaje.global_position - global_position).normalized() * 50
-	move_and_slide()
-	$AnimationPlayer.play("MeLaDieron")'''
 	
 func on_player_attack():
-	if current_state != State.BLOCK and randi() % 100 < block_chance * 100:
-		current_state = State.BLOCK
-	else:
-		current_state = State.HIT
-	
-func _on_Hitbox_body_entered(body):
-	if body == self:
-		# Forzar cambio de estado
-		if current_state != State.BLOCK:
+	if current_state != State.HIT and current_state != State.BLOCK:
+		if randf() < block_chance:  # 30% de probabilidad (block_chance = 0.4)
+			current_state = State.BLOCK
+			print("¡Bloqueó el ataque!")
+		else:
 			current_state = State.HIT
-			get_hit()
+			get_hit()  # Aplicar daño y retrocesoT
 	
 	
 	

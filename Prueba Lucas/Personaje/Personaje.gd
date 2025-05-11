@@ -2,7 +2,7 @@ class_name Personaje
 extends CharacterBody2D
 
 
-
+@export var team: int = 1
 @export var movimiento = 300
 
 func _physics_process(_delta: float) -> void:
@@ -39,8 +39,6 @@ func _physics_process(_delta: float) -> void:
 		$Sprite2D.visible = true
 		
 	# CONTROL DE HITBOX SEPARADO
-	'''$Sprite2D2/Hitbox.monitoring = Input.is_action_pressed("golpe")
-	$Sprite2D3/Hitbox2.monitoring = Input.is_action_pressed("golpe")'''
 	
 	if Input.is_action_just_pressed("golpe"):
 		$Sprite2D2/Hitbox.monitoring = true
@@ -57,17 +55,5 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 	
-func _on_Hitbox_body_entered(body):
-	if body.is_in_group("Enemigos"):
-		body.get_hit()
-		
 
-func _ready():
-	$Sprite2D2/Hitbox.body_entered.connect(_on_Hitbox_body_entered)
-	$Sprite2D2/Hitbox.monitoring = false  # desactivada al principio
-	
-	$Sprite2D3/Hitbox2.body_entered.connect(_on_Hitbox_body_entered)
-	$Sprite2D3/Hitbox2.monitoring = false
-	
-	
 	

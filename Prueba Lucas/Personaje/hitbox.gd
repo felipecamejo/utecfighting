@@ -9,14 +9,8 @@ signal hit_landed(damage: int)
 
 		
 func _on_area_entered(area2D: Area2D) -> void:
-	print("Jugador herido")
-	#hit(area2D)
-	
-
-'''func hit(hurt_area: HurtArea) -> void:
-	if not hurt_area.team == team:
-		if self is HitArea:  # Verifica que "self" sea un HitArea
-			hit_landed.emit(hurt_area.hurt(self))
-		else:
-			push_error("El objeto no es un HitArea")'''
-		
+	if area2D.is_in_group("hurtbox") and area2D.get_parent().team != self.team:
+		var enemy = area2D.get_parent()
+		if enemy != null and enemy.has_method("get_hit"):
+			enemy.on_player_attack()
+			# Opcional: Pasar daño
