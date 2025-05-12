@@ -59,7 +59,7 @@ func _physics_process(_delta):
 			$Isra2daPosicion.visible = false
 			$IsraLaRecibe.visible = true
 			await get_tree().create_timer(1.0).timeout
-			current_state = State.MOVE
+			#current_state = State.MOVE
 
 func move_towards_player(_delta):
 	var direction = (personaje.global_position - global_position).normalized()
@@ -75,12 +75,28 @@ func perform_attack():
 
 func get_hit():
 	current_state = State.HIT
-	# Mejorar la reacción física
+	# Mejorar la reacción física # Configurar knockback
 	var knockback_direction = (global_position - personaje.global_position).normalized()
-	velocity = knockback_direction * 200 # Aumentar fuerza retroceso
-	move_and_slide()
-	await get_tree().create_timer(1.3).timeout
-	current_state = State.MOVE
+	var knockback_power = 200
+	var knockback_duration = 0.3
+	var elapsed_time = 0.0
+	
+	# Aplicar knockback durante un tiempo corto
+	while elapsed_time < knockback_duration and current_state == State.HIT:
+		velocity = knockback_direction * knockback_power * (1.0 - elapsed_time/knockback_duration)
+		move_and_slide()
+		elapsed_time += get_process_delta_time()
+		await get_tree().process_frame
+	
+	velocity = Vector2.ZERO  # Detener el movimiento después del knockback
+	await get_tree().create_timer(1.0 - knockback_duration).timeout # El resto del tiempo de hit
+	
+	# Volver a estado normal
+	if current_state == State.HIT:
+		current_state = State.MOVE
+		$IsraLaRecibe.visible = false
+		$"IsraPosicion-sinfondo".visible = true
+		
 	
 	# Animación y tiempo de recuperación
 	$IsraLaRecibe.visible = true

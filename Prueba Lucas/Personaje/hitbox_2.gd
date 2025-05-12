@@ -1,4 +1,4 @@
-class_name HitArea
+class_name HitArea2
 extends Area2D
 
 signal hit_landed(damage: int)
@@ -10,6 +10,5 @@ signal hit_landed(damage: int)
 func _on_area_entered(area2D: Area2D) -> void:
 	if area2D.is_in_group("hurtbox") and area2D.get_parent().team != self.team:
 		var enemy = area2D.get_parent()
-		if enemy != null and enemy.has_method("get_hit"):
+		if enemy != null and enemy.has_method("on_player_attack"):
 			enemy.on_player_attack()
-			# Opcional: Pasar daño

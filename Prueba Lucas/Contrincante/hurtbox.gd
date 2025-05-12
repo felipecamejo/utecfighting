@@ -12,3 +12,7 @@ func hurt(hit_area: HitArea) -> int:
 	damaged.emit(damage)
 	return damage
 	
+func hurt2(hit_area: HitArea2) -> int:
+	var damage: int = max(0, hit_area.damage - defense)
+	damaged.emit(damage)
+	return damage
