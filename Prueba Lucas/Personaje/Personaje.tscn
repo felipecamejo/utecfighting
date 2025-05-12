@@ -61,7 +61,6 @@ script = ExtResource("6_imife")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D3/Hitbox2"]
 position = Vector2(-2.5, -36.7901)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_imife")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]

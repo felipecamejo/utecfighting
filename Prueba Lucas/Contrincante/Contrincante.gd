@@ -112,7 +112,7 @@ func on_player_attack():
 	if current_state != State.HIT and current_state != State.BLOCK:
 		if randf() < block_chance:  # 30% de probabilidad (block_chance = 0.4)
 			current_state = State.BLOCK
-			print("¡Bloqueó el ataque!")
+			#print("¡Bloqueó el ataque!")
 		else:
 			current_state = State.HIT
 			get_hit()  # Aplicar daño y retrocesoT

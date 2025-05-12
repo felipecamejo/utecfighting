@@ -178,10 +178,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qye8d"]
-size = Vector2(24, 21.75)
+size = Vector2(27, 22.875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tyn7"]
-size = Vector2(44.5, 33)
+size = Vector2(34, 43.5)
 
 [node name="Contrincante" type="CharacterBody2D" groups=["Enemigos"]]
 position = Vector2(-9, -12)
@@ -224,7 +224,7 @@ scale = Vector2(1.57075, 1.20115)
 texture = ExtResource("6_71uap")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["Enemigos"]]
-position = Vector2(11, -31)
+position = Vector2(9.5, -31.5625)
 shape = SubResource("RectangleShape2D_qye8d")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
@@ -234,5 +234,5 @@ collision_mask = 12
 script = ExtResource("7_4tyn7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, 8)
+position = Vector2(0, 2.75)
 shape = SubResource("RectangleShape2D_4tyn7")
