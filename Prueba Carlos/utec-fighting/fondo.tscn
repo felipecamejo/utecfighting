@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg3hf0p6psnof"]
+
+[ext_resource type="Texture2D" uid="uid://c2pd1qv4ext00" path="res://Assets/Recursos/fondo.png" id="1_l5324"]
+[ext_resource type="Script" uid="uid://cf4xad8tgs0nc" path="res://JuegoMain.gd" id="1_ytsh8"]
+[ext_resource type="PackedScene" uid="uid://biww02btmucca" path="res://Assets/PlayerIdle.tscn" id="2_ytsh8"]
+
+[node name="Juego" type="Node2D"]
+script = ExtResource("1_ytsh8")
+
+[node name="Nivel1" type="Sprite2D" parent="."]
+position = Vector2(217, 129)
+texture = ExtResource("1_l5324")
+
+[node name="Jugador" parent="." instance=ExtResource("2_ytsh8")]
+position = Vector2(203, 255)
