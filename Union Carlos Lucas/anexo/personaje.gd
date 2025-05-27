@@ -7,7 +7,8 @@ extends CharacterBody2D
 @export var attack_cooldown: float = 0.2  # Tiempo de espera entre ataques
 var is_attacking: bool = false
 var can_attack: bool = true  # Controla el cooldown
-@export var block_chance = 0.3 # 30% probabilidad de bloquear
+@export var block_chance = 0.5 # 30% probabilidad de bloquear
+
 @export var vida := 100
 
 func _physics_process(_delta: float) -> void:
@@ -65,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 func on_player_attack():
-	if randf() < block_chance and $Cubrirse.visible == true:
+	if randf() < block_chance and Input.is_action_pressed("cubrirse"):
 		print("¡Bloqueó el ataque!")
 	else:
 		vida -= 10

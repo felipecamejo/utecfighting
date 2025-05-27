@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2x8ikxpgr4yx" path="res://Imagenes/Personaje/golpe_sin_piernas-removebg-preview.png" id="5_f8plh"]
 [ext_resource type="Texture2D" uid="uid://cdx8aj8fy215m" path="res://Imagenes/Personaje/se_cubre-removebg-preview.png" id="6_35kqm"]
 [ext_resource type="Texture2D" uid="uid://byjhabdatwfef" path="res://Imagenes/Personaje/golpe_recibido-removebg-preview.png" id="7_35kqm"]
-[ext_resource type="Script" uid="uid://canvkalyd41w1" path="res://hurtboxPersonaje.gd" id="8_1y5k2"]
+[ext_resource type="Script" uid="uid://d3b8kppr24xj4" path="res://hurtboxPersonaje.gd" id="8_1y5k2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqm5q"]
 size = Vector2(5.84375, 36.828)
