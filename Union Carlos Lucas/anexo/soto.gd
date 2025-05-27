@@ -6,6 +6,11 @@ var attack_completed = false
 var retreat_distance = 0.0
 var golpes = 0
 
+@onready var barraVida = $"../Hud/RivalHud/barraVida"
+@onready var barraStamina = $"../Hud/RivalHud/barraStamina"
+@export var vida := 100
+@export var stamina := 100
+
 @export var team: int = 2
 @export var speed = 100
 @export var attack_distance = 100
@@ -14,10 +19,14 @@ var golpes = 0
 var personaje : Node2D
 
 func _ready():
+
 	personaje = get_parent().get_node("personaje")
 	randomize()
 	
 func _physics_process(_delta):
+	barraVida.value = vida
+	barraStamina.value = stamina
+	
 	var distance = global_position.distance_to(personaje.global_position)
 	$PosicionPrincipal.visible = true
 	$SegundaPosicion.visible = false
@@ -106,6 +115,7 @@ func get_hit():
 			$GolpeRecibido.visible = false
 			$PosicionPrincipal.visible = true
 			
+		vida -= 10
 		$GolpeRecibido.visible = true
 		$PosicionPrincipal.visible = true
 		await get_tree().create_timer(0.5).timeout # Tiempo de im
