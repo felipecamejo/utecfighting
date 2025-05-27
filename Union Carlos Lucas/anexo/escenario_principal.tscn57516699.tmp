@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdde6cofq3xh8"]
+
+[ext_resource type="Texture2D" uid="uid://c1i480yc3no3y" path="res://Imagenes/Fondos/fondo.png" id="1_llbg7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g73bs"]
+size = Vector2(683.125, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ku762"]
+size = Vector2(76.5, 638.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pwlj"]
+size = Vector2(82, 638.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06clh"]
+size = Vector2(925.875, 20)
+
+[node name="EscenarioPrincipal" type="StaticBody2D"]
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(588, 403)
+scale = Vector2(2.12037, 1.93137)
+texture = ExtResource("1_llbg7")
+
+[node name="Colision medio" type="CollisionShape2D" parent="."]
+position = Vector2(588.438, 660)
+shape = SubResource("RectangleShape2D_g73bs")
+
+[node name="Colision izq" type="CollisionShape2D" parent="."]
+position = Vector2(163.75, 338)
+shape = SubResource("RectangleShape2D_ku762")
+
+[node name="Colision der" type="CollisionShape2D" parent="."]
+position = Vector2(1001, 342)
+shape = SubResource("RectangleShape2D_6pwlj")
+
+[node name="Colision arr" type="CollisionShape2D" parent="."]
+position = Vector2(585, 328)
+shape = SubResource("RectangleShape2D_06clh")
