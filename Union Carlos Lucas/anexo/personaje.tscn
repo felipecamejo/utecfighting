@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://kyuxx8bvemmx"]
+[gd_scene load_steps=16 format=3 uid="uid://kyuxx8bvemmx"]
 
 [ext_resource type="Texture2D" uid="uid://bd74li7h8vjjk" path="res://Imagenes/Personaje/luchador-1.png-removebg-preview.png" id="1_ck3sb"]
 [ext_resource type="Script" uid="uid://c3sy6cpa0ke6v" path="res://personaje.gd" id="1_cx4ix"]
@@ -20,6 +20,31 @@ size = Vector2(152.5, 4)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ck3sb"]
 radius = 6.6515
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y5k2"]
+size = Vector2(86.5, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35kqm"]
+atlas = ExtResource("1_ck3sb")
+region = Rect2(22, 21, 41, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y5k2"]
+atlas = ExtResource("1_ck3sb")
+region = Rect2(22, 16, 41, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f8plh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35kqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y5k2")
+}],
+"loop": true,
+"name": &"Movimiento",
+"speed": 3.0
+}]
+
 [node name="Personaje" type="CharacterBody2D"]
 position = Vector2(0, -2)
 script = ExtResource("1_cx4ix")
@@ -37,6 +62,7 @@ position = Vector2(-4.25, 37)
 shape = SubResource("RectangleShape2D_35kqm")
 
 [node name="PosicionPrincipal" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(4.0375, 3.03152)
 texture = ExtResource("1_ck3sb")
 
@@ -72,5 +98,22 @@ visible = false
 position = Vector2(-8, -44)
 scale = Vector2(3.61, 2.99603)
 texture = ExtResource("7_35kqm")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+visible = false
+collision_layer = 4
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
+position = Vector2(-13, -66)
+shape = SubResource("RectangleShape2D_1y5k2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9, -26)
+scale = Vector2(3.85976, 2.9)
+sprite_frames = SubResource("SpriteFrames_f8plh")
+animation = &"Movimiento"
+frame_progress = 0.694921
 
 [connection signal="area_entered" from="Golpe/Hitbox" to="Golpe/Hitbox" method="_on_area_entered"]

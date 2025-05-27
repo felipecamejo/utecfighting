@@ -4,6 +4,7 @@ enum State { IDLE, MOVE, ATTACK, BLOCK, HIT, RETREAT }
 var current_state = State.IDLE
 var attack_completed = false
 var retreat_distance = 0.0
+var golpes = 0
 
 @export var team: int = 2
 @export var speed = 100
@@ -62,6 +63,7 @@ func _physics_process(_delta):
 			$GolpeRecibido.visible = true
 			await get_tree().create_timer(1.0).timeout
 			current_state = State.RETREAT
+			print(golpes)
 	
 func perform_attack():
 	$Golpe.visible = true
@@ -95,6 +97,7 @@ func get_hit():
 	var knockback_power = 200
 	var knockback_duration = 0.3
 	var elapsed_time = 0.0
+	golpes = golpes + 1
 	
 	# Aplicar knockback durante un tiempo corto
 	while elapsed_time < knockback_duration and current_state == State.HIT:

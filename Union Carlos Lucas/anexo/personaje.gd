@@ -9,10 +9,12 @@ var is_attacking: bool = false
 var can_attack: bool = true  # Controla el cooldown
 
 func _physics_process(_delta: float) -> void:
+	#$AnimatedSprite2D.play("Movimiento")
 	$PosicionPrincipal.visible = true
 	$Paso.visible = false
 	$Golpe.visible = false
 	$Cubrirse.visible = false
+	#$PosicionPrincipal.visible = false
 	
 	var direccion = Input.get_axis("direccionIzq", "direccionDer")
 	velocity.x = movimiento * direccion

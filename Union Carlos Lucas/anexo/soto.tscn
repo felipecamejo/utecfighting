@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cok6d02gxxx3q"]
+[gd_scene load_steps=19 format=3 uid="uid://cok6d02gxxx3q"]
 
 [ext_resource type="Script" uid="uid://d2ek6en8r021u" path="res://soto.gd" id="1_mc208"]
 [ext_resource type="Texture2D" uid="uid://lkhm6dx6tnbx" path="res://Imagenes/Soto/Posicion.png" id="1_vw5i1"]
@@ -21,6 +21,9 @@ size = Vector2(20, 45)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yjyul"]
 radius = 12.5381
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjyul"]
+size = Vector2(26.017, 20.0164)
 
 [sub_resource type="Animation" id="Animation_oulaw"]
 resource_name = "Caminar"
@@ -170,6 +173,15 @@ visible = false
 position = Vector2(1, -4.99999)
 scale = Vector2(2.80952, 2.39607)
 texture = ExtResource("4_yirl4")
+
+[node name="HitArea" type="Area2D" parent="Golpe"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Golpe/HitArea"]
+position = Vector2(4.62712, -2.08675)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_yjyul")
 
 [node name="GolpeRecibido" type="Sprite2D" parent="."]
 visible = false
