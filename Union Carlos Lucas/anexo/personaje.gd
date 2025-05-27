@@ -7,14 +7,17 @@ extends CharacterBody2D
 @export var attack_cooldown: float = 0.2  # Tiempo de espera entre ataques
 var is_attacking: bool = false
 var can_attack: bool = true  # Controla el cooldown
-@export var block_chance = 0.5 # 30% probabilidad de bloquear
+@export var block_chance = 0.3 # 30% probabilidad de bloquear
 
 @export var vida := 100
-@onready var barraVida = $"../Hud/Control/ProgressBar"
+@export var stamina :=100
+@onready var barraVida = $"../Hud/PlayerHud/barraVida"
+@onready var barraStamina = $"../Hud/PlayerHud/barraStamina"
 
 
 func _physics_process(_delta: float) -> void:
 	barraVida.value = vida
+	barraStamina.value = stamina
 	$PosicionPrincipal.visible = true
 	$Paso.visible = false
 	$Golpe.visible = false
