@@ -8,6 +8,7 @@ extends CharacterBody2D
 var is_attacking: bool = false
 var can_attack: bool = true  # Controla el cooldown
 @export var block_chance = 0.5 # 30% probabilidad de bloquear
+
 @export var vida := 100
 
 func _physics_process(_delta: float) -> void:

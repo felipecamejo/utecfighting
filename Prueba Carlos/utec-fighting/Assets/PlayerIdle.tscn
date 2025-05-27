@@ -1,0 +1,194 @@
+[gd_scene load_steps=23 format=3 uid="uid://biww02btmucca"]
+
+[ext_resource type="Texture2D" uid="uid://i6oruldjqpmw" path="res://Assets/Recursos/spritesheet.png" id="1_6wvir"]
+[ext_resource type="Script" uid="uid://eh21pefeuge" path="res://Assets/Player.gd" id="1_60vq5"]
+[ext_resource type="Script" uid="uid://b3a0bdpdi4kyk" path="res://Assets/jugador.gd" id="2_hs8vp"]
+[ext_resource type="Texture2D" uid="uid://u1cyjvvktleh" path="res://Assets/Recursos/pixil-frame-0 (11).png" id="3_u26vn"]
+[ext_resource type="Script" uid="uid://c0kfm4blbkw6x" path="res://Assets/rival.gd" id="5_2o7wl"]
+[ext_resource type="Texture2D" uid="uid://c63cwj3ugd70o" path="res://Assets/Recursos/pixil-frame-0 (12).png" id="5_hfmvn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hs8vp"]
+radius = 48.0
+height = 145.714
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wvir"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(151, 270, 34, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs8vp"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(151, 270, 37, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o7wl"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(3, 270, 43, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfmvn"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(3, 270, 46, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60vq5"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(49, 270, 34, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u26vn"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(97, 270, 41, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6dju"]
+atlas = ExtResource("3_u26vn")
+region = Rect2(33, 32, 39, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hv17"]
+atlas = ExtResource("3_u26vn")
+region = Rect2(33, 30, 39, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pci4q"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(193, 0, 44, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cqep"]
+atlas = ExtResource("5_hfmvn")
+region = Rect2(2, 0, 44, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mybk3"]
+atlas = ExtResource("5_hfmvn")
+region = Rect2(52, 0, 44, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twyv0"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(97, 0, 44, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdby4"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(1, 0, 44, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibj8r"]
+atlas = ExtResource("1_6wvir")
+region = Rect2(53, 0, 44, 89)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ayvlf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wvir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs8vp")
+}],
+"loop": true,
+"name": &"PlayerGuard",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o7wl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfmvn")
+}],
+"loop": true,
+"name": &"PlayerIdle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60vq5")
+}],
+"loop": true,
+"name": &"PlayerPunch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u26vn")
+}],
+"loop": true,
+"name": &"PlayerPunched",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6dju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hv17")
+}],
+"loop": true,
+"name": &"PlayerWalk",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pci4q")
+}],
+"loop": true,
+"name": &"RivalGuard",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cqep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mybk3")
+}],
+"loop": true,
+"name": &"RivalIdle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twyv0")
+}],
+"loop": true,
+"name": &"RivalPunch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdby4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibj8r")
+}],
+"loop": true,
+"name": &"RivalWalk",
+"speed": 2.0
+}]
+
+[node name="Personaje" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_60vq5")
+
+[node name="Rival" type="CharacterBody2D" parent="."]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("5_2o7wl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rival"]
+position = Vector2(-6.49639e-13, 135.714)
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_hs8vp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rival"]
+position = Vector2(3.8147e-06, 132.857)
+scale = Vector2(2.91667, 3)
+sprite_frames = SubResource("SpriteFrames_ayvlf")
+animation = &"RivalGuard"
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(3.2482e-13, 2.17983e-05)
+scale = Vector2(1, 1)
+script = ExtResource("2_hs8vp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+position = Vector2(-6.49639e-13, 135.714)
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_hs8vp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Jugador"]
+position = Vector2(3.8147e-06, 132.857)
+scale = Vector2(2.91667, 3)
+sprite_frames = SubResource("SpriteFrames_ayvlf")
+animation = &"RivalGuard"
+frame_progress = 0.62238

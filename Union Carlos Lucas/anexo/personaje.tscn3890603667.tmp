@@ -1,0 +1,121 @@
+[gd_scene load_steps=17 format=3 uid="uid://kyuxx8bvemmx"]
+
+[ext_resource type="Texture2D" uid="uid://bd74li7h8vjjk" path="res://Imagenes/Personaje/luchador-1.png-removebg-preview.png" id="1_ck3sb"]
+[ext_resource type="Script" uid="uid://c3sy6cpa0ke6v" path="res://personaje.gd" id="1_cx4ix"]
+[ext_resource type="Texture2D" uid="uid://644qm4axcesb" path="res://Imagenes/Personaje/caminata der.png" id="2_cx4ix"]
+[ext_resource type="Script" uid="uid://coe7xbc2x481u" path="res://hitbox.gd" id="5_cx4ix"]
+[ext_resource type="Texture2D" uid="uid://2x8ikxpgr4yx" path="res://Imagenes/Personaje/golpe_sin_piernas-removebg-preview.png" id="5_f8plh"]
+[ext_resource type="Texture2D" uid="uid://cdx8aj8fy215m" path="res://Imagenes/Personaje/se_cubre-removebg-preview.png" id="6_35kqm"]
+[ext_resource type="Texture2D" uid="uid://byjhabdatwfef" path="res://Imagenes/Personaje/golpe_recibido-removebg-preview.png" id="7_35kqm"]
+[ext_resource type="Script" uid="uid://canvkalyd41w1" path="res://hurtboxPersonaje.gd" id="8_1y5k2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqm5q"]
+size = Vector2(5.84375, 36.828)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vb47"]
+size = Vector2(5.5, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35kqm"]
+size = Vector2(152.5, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ck3sb"]
+radius = 6.6515
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y5k2"]
+size = Vector2(86.5, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35kqm"]
+atlas = ExtResource("1_ck3sb")
+region = Rect2(22, 21, 41, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y5k2"]
+atlas = ExtResource("1_ck3sb")
+region = Rect2(22, 16, 41, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f8plh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35kqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y5k2")
+}],
+"loop": true,
+"name": &"Movimiento",
+"speed": 3.0
+}]
+
+[node name="Personaje" type="CharacterBody2D"]
+position = Vector2(0, -2)
+script = ExtResource("1_cx4ix")
+
+[node name="Delimitador1" type="CollisionShape2D" parent="."]
+position = Vector2(-81.0781, 21.414)
+shape = SubResource("RectangleShape2D_pqm5q")
+
+[node name="Delimitador2" type="CollisionShape2D" parent="."]
+position = Vector2(67.75, 23)
+shape = SubResource("RectangleShape2D_2vb47")
+
+[node name="Delimitador3" type="CollisionShape2D" parent="."]
+position = Vector2(-4.25, 37)
+shape = SubResource("RectangleShape2D_35kqm")
+
+[node name="PosicionPrincipal" type="Sprite2D" parent="."]
+scale = Vector2(4.0375, 3.03152)
+texture = ExtResource("1_ck3sb")
+
+[node name="Paso" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4.46875, -85.6875)
+scale = Vector2(3.30937, 2.86625)
+texture = ExtResource("2_cx4ix")
+
+[node name="Golpe" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-23, -73)
+scale = Vector2(3.59103, 3.34353)
+texture = ExtResource("5_f8plh")
+
+[node name="Hitbox" type="Area2D" parent="Golpe" groups=["hurtbox"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("5_cx4ix")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Golpe/Hitbox"]
+position = Vector2(7.24027, -24.8241)
+shape = SubResource("CircleShape2D_ck3sb")
+
+[node name="Cubrirse" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-11.1875, -41.75)
+scale = Vector2(4.54167, 3.51754)
+texture = ExtResource("6_35kqm")
+
+[node name="GolpeRecibido" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-8, -44)
+scale = Vector2(3.61, 2.99603)
+texture = ExtResource("7_35kqm")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+visible = false
+collision_layer = 4
+collision_mask = 12
+script = ExtResource("8_1y5k2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
+position = Vector2(-13, -66)
+shape = SubResource("RectangleShape2D_1y5k2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-9, -26)
+scale = Vector2(3.85976, 2.9)
+sprite_frames = SubResource("SpriteFrames_f8plh")
+animation = &"Movimiento"
+frame_progress = 0.888736
+
+[connection signal="area_entered" from="Golpe/Hitbox" to="Golpe/Hitbox" method="_on_area_entered"]

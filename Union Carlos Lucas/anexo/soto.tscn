@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://doi6ivqklqi4t" path="res://Imagenes/Soto/larecibe mejora.png" id="5_3gske"]
 [ext_resource type="Texture2D" uid="uid://dmmmylwiptqbq" path="res://Imagenes/Soto/vencido1 mejora.png" id="6_k1aln"]
 [ext_resource type="Texture2D" uid="uid://c66vwurcucblv" path="res://Imagenes/Soto/vencido2.png" id="7_mc208"]
+
 [ext_resource type="Script" uid="uid://dla0t32qim5m" path="res://hitboxSoto.gd" id="7_oulaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7oowv"]
