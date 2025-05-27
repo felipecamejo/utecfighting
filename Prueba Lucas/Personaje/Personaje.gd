@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 @export var team: int = 1
-@export var movimiento = 300
+@export var movimiento = 200
 @export var attack_cooldown: float = 0.2  # Tiempo de espera entre ataques
 var is_attacking: bool = false
 var can_attack: bool = true  # Controla el cooldown
