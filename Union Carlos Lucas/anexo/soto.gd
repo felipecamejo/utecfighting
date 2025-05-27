@@ -39,14 +39,6 @@ func _physics_process(_delta):
 		State.ATTACK:
 			if not attack_completed:
 				perform_attack()
-			'''if current_state != State.MOVE:
-				$PosicionPrincipal.visible = false
-				$Golpe.visible = true
-				await get_tree().create_timer(0.5).timeout
-				$Golpe.visible = false
-				move_away_from_player(_delta)
-				if distance > attack_distance * 2:
-					current_state = State.MOVE'''
 		State.RETREAT:
 			#$PosicionPrincipal.visible = true
 			move_away_from_player(_delta)

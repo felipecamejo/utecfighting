@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cok6d02gxxx3q"]
+[gd_scene load_steps=20 format=3 uid="uid://cok6d02gxxx3q"]
 
 [ext_resource type="Script" uid="uid://d2ek6en8r021u" path="res://soto.gd" id="1_mc208"]
 [ext_resource type="Texture2D" uid="uid://lkhm6dx6tnbx" path="res://Imagenes/Soto/Posicion.png" id="1_vw5i1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://doi6ivqklqi4t" path="res://Imagenes/Soto/larecibe mejora.png" id="5_3gske"]
 [ext_resource type="Texture2D" uid="uid://dmmmylwiptqbq" path="res://Imagenes/Soto/vencido1 mejora.png" id="6_k1aln"]
 [ext_resource type="Texture2D" uid="uid://c66vwurcucblv" path="res://Imagenes/Soto/vencido2.png" id="7_mc208"]
+[ext_resource type="Script" uid="uid://dla0t32qim5m" path="res://hitboxSoto.gd" id="7_oulaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7oowv"]
 size = Vector2(27.5, 25)
@@ -177,10 +178,10 @@ texture = ExtResource("4_yirl4")
 [node name="HitArea" type="Area2D" parent="Golpe"]
 collision_layer = 4
 collision_mask = 4
+script = ExtResource("7_oulaw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Golpe/HitArea"]
 position = Vector2(4.62712, -2.08675)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yjyul")
 
 [node name="GolpeRecibido" type="Sprite2D" parent="."]
@@ -206,3 +207,5 @@ offset = Vector2(-149, -86)
 libraries = {
 &"": SubResource("AnimationLibrary_u73l8")
 }
+
+[connection signal="area_entered" from="Golpe/HitArea" to="Golpe/HitArea" method="_on_area_entered"]

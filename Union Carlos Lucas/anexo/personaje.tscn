@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://kyuxx8bvemmx"]
+[gd_scene load_steps=20 format=3 uid="uid://kyuxx8bvemmx"]
 
 [ext_resource type="Texture2D" uid="uid://bd74li7h8vjjk" path="res://Imagenes/Personaje/luchador-1.png-removebg-preview.png" id="1_ck3sb"]
 [ext_resource type="Script" uid="uid://c3sy6cpa0ke6v" path="res://personaje.gd" id="1_cx4ix"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2x8ikxpgr4yx" path="res://Imagenes/Personaje/golpe_sin_piernas-removebg-preview.png" id="5_f8plh"]
 [ext_resource type="Texture2D" uid="uid://cdx8aj8fy215m" path="res://Imagenes/Personaje/se_cubre-removebg-preview.png" id="6_35kqm"]
 [ext_resource type="Texture2D" uid="uid://byjhabdatwfef" path="res://Imagenes/Personaje/golpe_recibido-removebg-preview.png" id="7_35kqm"]
+[ext_resource type="Script" uid="uid://d3b8kppr24xj4" path="res://hurtboxPersonaje.gd" id="8_1y5k2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqm5q"]
 size = Vector2(5.84375, 36.828)
@@ -45,6 +46,66 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="Animation" id="Animation_1y5k2"]
+resource_name = "GolpeRecibido"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GolpeRecibido:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PosicionPrincipal:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_f8plh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GolpeRecibido:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PosicionPrincipal:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqm5q"]
+_data = {
+&"GolpeRecibido": SubResource("Animation_1y5k2"),
+&"RESET": SubResource("Animation_f8plh")
+}
+
 [node name="Personaje" type="CharacterBody2D"]
 position = Vector2(0, -2)
 script = ExtResource("1_cx4ix")
@@ -62,7 +123,6 @@ position = Vector2(-4.25, 37)
 shape = SubResource("RectangleShape2D_35kqm")
 
 [node name="PosicionPrincipal" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(4.0375, 3.03152)
 texture = ExtResource("1_ck3sb")
 
@@ -103,6 +163,7 @@ texture = ExtResource("7_35kqm")
 visible = false
 collision_layer = 4
 collision_mask = 12
+script = ExtResource("8_1y5k2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 visible = false
@@ -110,10 +171,16 @@ position = Vector2(-13, -66)
 shape = SubResource("RectangleShape2D_1y5k2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(-9, -26)
 scale = Vector2(3.85976, 2.9)
 sprite_frames = SubResource("SpriteFrames_f8plh")
 animation = &"Movimiento"
-frame_progress = 0.694921
+frame_progress = 0.0293814
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pqm5q")
+}
 
 [connection signal="area_entered" from="Golpe/Hitbox" to="Golpe/Hitbox" method="_on_area_entered"]
