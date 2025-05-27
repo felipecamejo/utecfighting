@@ -1,91 +1,82 @@
-class_name Personaje
 extends CharacterBody2D
 
-
-@export var team: int = 1
-@export var movimiento = 200
-@export var attack_cooldown: float = 0.2  # Tiempo de espera entre ataques
-var is_attacking: bool = false
-var can_attack: bool = true  # Controla el cooldown
-@export var block_chance = 0.3 # 30% probabilidad de bloquear
-
+@export var movimiento := 200
 @export var vida := 100
-@export var stamina :=100
-@onready var barraVida = $"../Hud/PlayerHud/barraVida"
-@onready var barraStamina = $"../Hud/PlayerHud/barraStamina"
+@export var block_chance := 0.3
+@export var attack_cooldown: float = 0.3
 
+var is_attacking := false
+var can_attack := true
+var recibiendo_golpe := false
 
-func _physics_process(_delta: float) -> void:
-	barraVida.value = vida
-	barraStamina.value = stamina
-	$PosicionPrincipal.visible = true
-	$Paso.visible = false
-	$Golpe.visible = false
-	$Cubrirse.visible = false
-	$GolpeRecibido.visible = false
-	
+func _ready() -> void:
+	$PosicionPrincipal.visible = false
+
+func _physics_process(delta):
+	procesar_movimiento()
+	procesar_animacion()
+	procesar_ataque()
+
+func procesar_movimiento() -> void:
+	var enemigo = $"../soto" # Cambia según estructura real
+	var distancia = abs(position.x - enemigo.position.x)
 	var direccion = Input.get_axis("direccionIzq", "direccionDer")
 	velocity.x = movimiento * direccion
-	
-	if Input.is_action_pressed("cubrirse"):
-		$PosicionPrincipal.visible = false
-		$Cubrirse.visible = true
-	elif Input.is_action_pressed("golpe") and position.x < 500:
-		$Golpe.scale.x = -abs($Golpe.scale.x) #Sirve para espejar
-		$PosicionPrincipal.visible = false
-		$Golpe.visible = true
-	elif Input.is_action_pressed("golpe"):
-		$Golpe.scale.x = abs($Golpe.scale.x) #Volver a espejar para dejar en posicion inicial
-		$PosicionPrincipal.visible = false
-		$Golpe.visible = true
-	elif position.x < 500:
-		$Paso.scale.x = abs($Paso.scale.x)
-		$PosicionPrincipal.visible = false
-		$Paso.visible = true
-	elif $".".position.x > 700:
-		$Paso.scale.x = -abs($Paso.scale.x)
-		$PosicionPrincipal.visible = false
-		$Paso.visible = true
-	else:
-		$PosicionPrincipal.visible = true
-		
-	if Input.is_action_just_pressed("golpe") and can_attack and not is_attacking:
-		is_attacking = true
-		can_attack = false
-		$Golpe/Hitbox.monitoring = true
-		$Golpe/Hitbox.visible = true # opcional, si quieres verla
-		await get_tree().create_timer(0.3).timeout # Tiempo activa hitbox
-		$Golpe/Hitbox.monitoring = false
-		$Golpe/Hitbox.visible = false
-		is_attacking = false
-		
-		await get_tree().create_timer(attack_cooldown).timeout  # Cooldown
-		can_attack = true
-		#Se implementa cooldown para no spamear click
-		
-	else:
-		$Golpe/Hitbox.monitoring = false
-		$Golpe/Hitbox.visible = false
-
-
-
 	move_and_slide()
+
+	if direccion != 0:
+		$AnimatedSprite2D.flip_h = enemigo.position.x > position.x
+
+func procesar_animacion() -> void:
+	var enemigo = $"../soto"
+	var distancia = abs(position.x - enemigo.position.x)
+	var anim = "PlayerIdle"
+
+	if recibiendo_golpe:
+		anim = "PlayerPunched"
+	elif is_attacking:
+		anim = "PlayerPunch"
+	elif Input.is_action_pressed("cubrirse"):
+		anim = "PlayerGuard"
+	elif distancia < 50:
+		anim = "PlayerIdle"
+	elif abs(velocity.x) >= 0:
+		anim = "PlayerWalk"
 	
+
+	reproducir_animacion(anim)
+
+
+func procesar_ataque() -> void:
+	if Input.is_action_just_pressed("golpe") and can_attack and not is_attacking and not recibiendo_golpe:
+		iniciar_ataque()
+
+func iniciar_ataque() -> void:
+	is_attacking = true
+	can_attack = false
+	$Golpe/Hitbox.monitoring = true
+
+	await get_tree().create_timer(0.3).timeout
+
+	$Golpe/Hitbox.monitoring = false
+	is_attacking = false
+
+	await get_tree().create_timer(attack_cooldown).timeout
+	can_attack = true
+
 func on_player_attack():
-	if randf() < block_chance and Input.is_action_pressed("cubrirse"):
-		print("¡Bloqueó el ataque!")
+	if Input.is_action_pressed("cubrirse"):
+		print("¡Bloqueó!")
 	else:
 		vida -= 10
-		get_hit()
-		print(name, " recibió daño! Vida: ", vida)
-		
-	#if vida <= 0:
-	#	queue_free()
-			
-func get_hit():
-	$AnimationPlayer.play("GolpeRecibido")
-	await $AnimationPlayer.animation_finished
-	
-	
-	
-	
+		recibir_golpe()
+
+func recibir_golpe() -> void:
+	recibiendo_golpe = true
+	reproducir_animacion("PlayerPunched")
+	await get_tree().create_timer(0.3).timeout
+	recibiendo_golpe = false
+
+func reproducir_animacion(nombre: String) -> void:
+	if $AnimatedSprite2D.animation != nombre:
+		$AnimatedSprite2D.play(nombre)

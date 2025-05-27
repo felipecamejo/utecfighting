@@ -51,7 +51,7 @@ position = Vector2(691, 448)
 collision_layer = 2
 
 [node name="personaje" parent="." instance=ExtResource("2_8yg71")]
-position = Vector2(609, 608)
+position = Vector2(581, 606)
 collision_layer = 2
 
 [node name="Hud" type="CanvasLayer" parent="."]
