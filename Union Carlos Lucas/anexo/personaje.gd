@@ -10,8 +10,11 @@ var can_attack: bool = true  # Controla el cooldown
 @export var block_chance = 0.5 # 30% probabilidad de bloquear
 
 @export var vida := 100
+@onready var barraVida = $"../Hud/Control/ProgressBar"
+
 
 func _physics_process(_delta: float) -> void:
+	barraVida.value = vida
 	$PosicionPrincipal.visible = true
 	$Paso.visible = false
 	$Golpe.visible = false
