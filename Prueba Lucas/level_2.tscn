@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://yktjr515r6h4"]
+
+[ext_resource type="PackedScene" uid="uid://nuaw8hqntpyu" path="res://escena2.tscn" id="1_xdadj"]
+[ext_resource type="PackedScene" uid="uid://bdgujmoio1443" path="res://Personaje/Personaje.tscn" id="2_1y8me"]
+[ext_resource type="PackedScene" uid="uid://d4e4o77rj8m62" path="res://Contrincante/Contrincante.tscn" id="3_n7ypv"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" parent="." instance=ExtResource("1_xdadj")]
+position = Vector2(307, 189)
+
+[node name="contrincante" parent="." instance=ExtResource("3_n7ypv")]
+position = Vector2(449, 278)
+
+[node name="personaje" parent="." instance=ExtResource("2_1y8me")]
+position = Vector2(326, 331)
