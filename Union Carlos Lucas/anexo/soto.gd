@@ -87,7 +87,7 @@ func get_hit():
 	current_state = State.HIT
 	var knockback_direction = (global_position - personaje.global_position).normalized()
 	var knockback_power = 200
-	var knockback_duration = 0.3
+	var knockback_duration = 0.7
 	var elapsed_time = 0.0
 	golpes += 1
 	
@@ -111,12 +111,15 @@ func get_hit():
 		current_state = State.MOVE
 	
 func on_player_attack():
-	if current_state != State.HIT and current_state != State.BLOCK:
-		if randf() < block_chance:
-			current_state = State.BLOCK
-		else:
-			current_state = State.HIT
-			get_hit()
+	var distance = global_position.distance_to(personaje.global_position)
+	if distance <= attack_distance:
+		if current_state != State.HIT and current_state != State.BLOCK:
+			if randf() < block_chance:
+				current_state = State.BLOCK
+			else:
+				current_state = State.HIT
+				get_hit()
+
 
 func _ocultar_no_animatedsprites():
 	for child in get_children():
