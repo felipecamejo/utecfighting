@@ -45,13 +45,14 @@ gradient = SubResource("Gradient_ydtn4")
 [node name="Nivel1" type="Node2D"]
 
 [node name="EscenarioPrincipal" parent="." instance=ExtResource("1_kuiop")]
+position = Vector2(-130, 35)
 
 [node name="soto" parent="." instance=ExtResource("3_i1n8g")]
 position = Vector2(691, 448)
 collision_layer = 2
 
 [node name="personaje" parent="." instance=ExtResource("2_8yg71")]
-position = Vector2(581, 606)
+position = Vector2(172, 639)
 collision_layer = 2
 
 [node name="Hud" type="CanvasLayer" parent="."]
@@ -64,65 +65,96 @@ offset_left = 146.0
 offset_top = 154.0
 offset_right = 451.416
 offset_bottom = 244.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Hud/PlayerHud"]
 layout_mode = 2
+anchor_left = -0.298462
+anchor_top = -0.577778
+anchor_right = -0.298462
+anchor_bottom = -0.577778
 offset_left = 105.0
 offset_top = 3.0
 offset_right = 168.0
 offset_bottom = 26.0
 text = "Player 1"
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/PlayerHud"]
-position = Vector2(41, 47.25)
+position = Vector2(-68, -7)
 scale = Vector2(1, 0.92268)
 sprite_frames = SubResource("SpriteFrames_s48l2")
 animation = &"caraPj"
 script = ExtResource("5_ydtn4")
 
 [node name="texturaVida" type="TextureRect" parent="Hud/PlayerHud"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.286154
+anchor_top = -0.522222
+anchor_right = -0.286154
+anchor_bottom = -0.522222
 offset_left = 104.0
 offset_top = 27.0
 offset_right = 309.0
 offset_bottom = 36.0
 texture = SubResource("GradientTexture1D_s48l2")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="texturaStamina" type="TextureRect" parent="Hud/PlayerHud"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.286154
+anchor_top = -0.522222
+anchor_right = -0.286154
+anchor_bottom = -0.522222
 offset_left = 104.0
 offset_top = 37.0
 offset_right = 234.0
 offset_bottom = 46.0
 texture = SubResource("GradientTexture1D_hv2ca")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="barraStamina" type="ProgressBar" parent="Hud/PlayerHud"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.286154
+anchor_top = -0.522222
+anchor_right = -0.286154
+anchor_bottom = -0.522222
 offset_left = 104.0
 offset_top = 37.0
 offset_right = 234.0
 offset_bottom = 46.0
 value = 20.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="barraVida" type="ProgressBar" parent="Hud/PlayerHud"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.286154
+anchor_top = -0.522222
+anchor_right = -0.286154
+anchor_bottom = -0.522222
 offset_left = 104.0
 offset_top = 27.0
 offset_right = 309.0
 offset_bottom = 36.0
 value = 20.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="RivalHud" type="Control" parent="Hud"]
 layout_mode = 3
 anchor_right = 0.017
-offset_left = 609.0
-offset_top = 154.0
-offset_right = 1013.42
-offset_bottom = 244.0
+offset_left = 460.0
+offset_top = 103.0
+offset_right = 864.42
+offset_bottom = 193.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Hud/RivalHud"]
 layout_mode = 2
@@ -132,6 +164,7 @@ offset_right = 308.0
 offset_bottom = 26.0
 text = "Soto"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/RivalHud"]
 position = Vector2(381, 47)
@@ -148,6 +181,7 @@ offset_right = 309.0
 offset_bottom = 36.0
 texture = SubResource("GradientTexture1D_s48l2")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="texturaStamina" type="TextureRect" parent="Hud/RivalHud"]
 layout_mode = 0
@@ -157,6 +191,7 @@ offset_right = 309.0
 offset_bottom = 46.0
 texture = SubResource("GradientTexture1D_hv2ca")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="barraStamina" type="ProgressBar" parent="Hud/RivalHud"]
 layout_mode = 0
@@ -167,6 +202,7 @@ offset_bottom = 46.0
 value = 20.0
 fill_mode = 1
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="barraVida" type="ProgressBar" parent="Hud/RivalHud"]
 layout_mode = 0
@@ -177,3 +213,7 @@ offset_bottom = 36.0
 value = 20.0
 fill_mode = 1
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(916, 687)
