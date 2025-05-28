@@ -202,7 +202,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"RivalWalk",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [node name="Soto" type="CharacterBody2D"]
@@ -291,6 +291,8 @@ libraries = {
 position = Vector2(4, -9)
 scale = Vector2(2.70455, 2.40588)
 sprite_frames = SubResource("SpriteFrames_o01bj")
-animation = &"RivalWalk"
+animation = &"RivalGuard"
+
+[node name="punch_cooldown_timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Golpe/HitArea" to="Golpe/HitArea" method="_on_area_entered"]
