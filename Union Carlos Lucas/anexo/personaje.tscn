@@ -190,7 +190,7 @@ shape = SubResource("RectangleShape2D_35kqm")
 position = Vector2(-4, -47)
 scale = Vector2(3.85976, 2.9)
 sprite_frames = SubResource("SpriteFrames_f8plh")
-animation = &"PlayerWalk"
+animation = &"PlayerPunched"
 
 [node name="PosicionPrincipal" type="Sprite2D" parent="."]
 scale = Vector2(4.0375, 3.03152)

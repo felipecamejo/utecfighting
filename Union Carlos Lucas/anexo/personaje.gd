@@ -12,14 +12,14 @@ var recibiendo_golpe := false
 func _ready() -> void:
 	$PosicionPrincipal.visible = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	procesar_movimiento()
 	procesar_animacion()
 	procesar_ataque()
 
 func procesar_movimiento() -> void:
 	var enemigo = $"../soto" # Cambia según estructura real
-	var distancia = abs(position.x - enemigo.position.x)
+	var _distancia = abs(position.x - enemigo.position.x)
 	var direccion = Input.get_axis("direccionIzq", "direccionDer")
 	velocity.x = movimiento * direccion
 	move_and_slide()
@@ -65,15 +65,17 @@ func iniciar_ataque() -> void:
 	can_attack = true
 
 func on_player_attack():
+	print("on_player_attack() llamado")
 	if Input.is_action_pressed("cubrirse"):
 		print("¡Bloqueó!")
 	else:
 		vida -= 10
+		print("Vida actual:", vida)
 		recibir_golpe()
 
 func recibir_golpe() -> void:
-	recibiendo_golpe = true
 	reproducir_animacion("PlayerPunched")
+	recibiendo_golpe = true
 	await get_tree().create_timer(0.3).timeout
 	recibiendo_golpe = false
 
