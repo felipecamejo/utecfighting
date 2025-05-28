@@ -30,7 +30,6 @@ func actualizar_stamina():
 		stamina += 0.1
 		if stamina > 100:
 			stamina = 100
-		print("stamina subiendo a:", stamina)
 	barraStamina.value = stamina
 	
 func actualizar_vida():
