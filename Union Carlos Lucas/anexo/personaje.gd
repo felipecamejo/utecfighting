@@ -2,8 +2,14 @@ extends CharacterBody2D
 
 @export var movimiento := 200
 @export var vida := 100
+@export var stamina := 100.0
 @export var block_chance := 0.3
 @export var attack_cooldown: float = 0.3
+
+#Hud
+@onready var barraVida = $"../Hud/PlayerHud/barraVida"
+@onready var barraStamina = $"../Hud/PlayerHud/barraStamina"
+
 
 var is_attacking := false
 var can_attack := true
@@ -13,9 +19,22 @@ func _ready() -> void:
 	$PosicionPrincipal.visible = false
 
 func _physics_process(_delta):
+	actualizar_stamina()
+	actualizar_vida()
 	procesar_movimiento()
 	procesar_animacion()
 	procesar_ataque()
+
+func actualizar_stamina():
+	if stamina < 100 and not is_attacking:
+		stamina += 0.1
+		if stamina > 100:
+			stamina = 100
+		print("stamina subiendo a:", stamina)
+	barraStamina.value = stamina
+	
+func actualizar_vida():
+	barraVida.value = vida
 
 func procesar_movimiento() -> void:
 	var enemigo = $"../soto" # Cambia según estructura real
@@ -48,18 +67,19 @@ func procesar_animacion() -> void:
 
 
 func procesar_ataque() -> void:
-	if Input.is_action_just_pressed("golpe") and can_attack and not is_attacking and not recibiendo_golpe:
+	if Input.is_action_just_pressed("golpe") and stamina > 24 and can_attack and not is_attacking and not recibiendo_golpe:
 		iniciar_ataque()
 
 func iniciar_ataque() -> void:
 	is_attacking = true
+	stamina -= 25
 	can_attack = false
 	$Golpe/Hitbox.monitoring = true
 
 	await get_tree().create_timer(0.3).timeout
 
 	$Golpe/Hitbox.monitoring = false
-	is_attacking = false
+	is_attacking = false  # ← ESTO SE DEBE EJECUTAR SIEMPRE
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
