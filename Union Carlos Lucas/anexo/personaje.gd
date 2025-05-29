@@ -15,6 +15,7 @@ extends CharacterBody2D
 var is_attacking := false
 var can_attack := true
 var recibiendo_golpe := false
+signal game_over_triggered #DISPARADOR PARA AVISAR AL CONTRARIO QUE MURIO
 
 func _ready() -> void:
 	$PosicionPrincipal.visible = false
@@ -93,6 +94,9 @@ func on_player_attack():
 		vida -= 10
 		print("Vida actual:", vida)
 		recibir_golpe()
+	if vida <= 0:
+		game_over()
+	
 
 func recibir_golpe() -> void:
 	reproducir_animacion("PlayerPunched")
@@ -103,3 +107,11 @@ func recibir_golpe() -> void:
 func reproducir_animacion(nombre: String) -> void:
 	if $AnimatedSprite2D.animation != nombre:
 		$AnimatedSprite2D.play(nombre)
+
+func game_over():
+	emit_signal("game_over_triggered")  # Emitir la señal
+	print("¡Juego terminado!")
+	set_physics_process(false)
+	
+	# AQUI AGREGAR ESCENA DE JUGADOR VENCIDO POR UNOS SEGUNDOS O ANIMACION
+	
