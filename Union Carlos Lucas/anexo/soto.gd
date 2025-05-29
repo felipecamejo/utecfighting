@@ -23,6 +23,7 @@ func _ready():
 	randomize()
 	_ocultar_no_animatedsprites()
 	punch_cooldown_timer.one_shot = true
+	$Golpe/HitArea.monitoring = false
 
 func _physics_process(_delta):
 	barraVida.value = vida
@@ -47,8 +48,11 @@ func _physics_process(_delta):
 				current_state = State.RETREAT
 			elif distance < attack_distance and punch_cooldown_timer.is_stopped():
 				current_state = State.ATTACK
-				start_attack()
-
+				
+		State.ATTACK:
+			start_attack()
+			current_state = State.RETREAT
+			
 		State.RETREAT:
 			move_away_from_player()
 			$AnimatedSprite2D.play("RivalWalk")
@@ -79,9 +83,11 @@ func move_away_from_player():
 func start_attack():
 	performing_action = true
 	$AnimatedSprite2D.play("RivalPunch")
+	$Golpe/HitArea.monitoring = true
 	punch_cooldown_timer.start()
 	await get_tree().create_timer(0.6).timeout
 	current_state = State.RETREAT
+	$Golpe/HitArea.monitoring = false
 	ya_decidio_timer = false  # Reseteamos para la próxima vez que ataque
 	performing_action = false
 

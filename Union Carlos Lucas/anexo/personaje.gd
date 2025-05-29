@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var team: int = 1
 @export var movimiento := 200
 @export var vida := 100
 @export var stamina := 100.0
@@ -17,6 +18,7 @@ var recibiendo_golpe := false
 
 func _ready() -> void:
 	$PosicionPrincipal.visible = false
+	$Golpe/Hitbox.monitoring = false
 
 func _physics_process(_delta):
 	actualizar_stamina()
