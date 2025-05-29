@@ -4,6 +4,7 @@ enum State { IDLE, MOVE, ATTACK, BLOCK, HIT, RETREAT }
 var current_state = State.IDLE
 var golpes = 0
 var performing_action := false
+signal game_over_triggered
 
 @onready var barraVida = $"../Hud/RivalHud/barraVida"
 @onready var barraStamina = $"../Hud/RivalHud/barraStamina"
@@ -24,6 +25,8 @@ func _ready():
 	_ocultar_no_animatedsprites()
 	punch_cooldown_timer.one_shot = true
 	$Golpe/HitArea.monitoring = false
+	personaje.game_over_triggered.connect(desactivar_movimiento)
+	
 
 func _physics_process(_delta):
 	barraVida.value = vida
@@ -74,7 +77,7 @@ func move_away_from_player():
 	# Decidir solo una vez en el ciclo RETREAT antes del próximo ataque
 	if not ya_decidio_timer and current_state == State.RETREAT:
 		var random_value = randi_range(1, 3)  # 1, 2 o 3
-		punch_cooldown_timer.one_shot = (random_value <= 2)  # true si 1 o 2 (66%)
+		punch_cooldown_timer.one_shot = (random_value <= 2)  # true si 1 o 2 (66%) # SIEMPRE TRUE PARA QUE GOLPEE
 		ya_decidio_timer = true
 		print("Decidió punch_cooldown_timer.one_shot =", punch_cooldown_timer.one_shot)
 
@@ -104,6 +107,9 @@ func start_hit():
 	$AnimatedSprite2D.play("RivalPunched")
 	golpes += 1
 	vida -= 10
+	
+	if vida<=0:
+		game_over()
 
 	# Aplicar knockback simple
 	var knockback_distance = 50
@@ -142,3 +148,16 @@ func _ocultar_no_animatedsprites():
 			child.visible = true
 		elif "visible" in child:
 			child.visible = false
+			
+func desactivar_movimiento():
+	set_physics_process(false)
+	print("Movimiento desactivado")
+	
+func game_over():
+	# AQUI AGREGAR ANIMACION DE SOTO VENCIDO POR UNOS SEGUNDOS
+	emit_signal("game_over_triggered") # CON ESTA SEÑAL PODEMOS PONER UNA VICTORIA (jugador saltando o algo)
+	print("¡Juego terminado!")
+	State.RETREAT
+	await get_tree().create_timer(1.0).timeout
+	desactivar_movimiento()
+	
