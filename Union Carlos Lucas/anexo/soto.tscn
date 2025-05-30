@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cok6d02gxxx3q"]
+[gd_scene load_steps=32 format=3 uid="uid://cok6d02gxxx3q"]
 
 [ext_resource type="Script" uid="uid://d2ek6en8r021u" path="res://soto.gd" id="1_mc208"]
 [ext_resource type="Texture2D" uid="uid://lkhm6dx6tnbx" path="res://Imagenes/Soto/Posicion.png" id="1_vw5i1"]
@@ -128,6 +128,14 @@ _data = {
 &"RESET": SubResource("Animation_714qy")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u73l8"]
+atlas = ExtResource("11_u73l8")
+region = Rect2(240, 0, 64, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dokrn"]
+atlas = ExtResource("11_u73l8")
+region = Rect2(304, 0, 64, 85)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p83ka"]
 atlas = ExtResource("11_u73l8")
 region = Rect2(193, 0, 44, 85)
@@ -158,6 +166,17 @@ region = Rect2(52, 12, 44, 86)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o01bj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u73l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dokrn")
+}],
+"loop": true,
+"name": &"RivalDefeated",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p83ka")
@@ -291,7 +310,8 @@ libraries = {
 position = Vector2(4, -9)
 scale = Vector2(2.70455, 2.40588)
 sprite_frames = SubResource("SpriteFrames_o01bj")
-animation = &"RivalGuard"
+animation = &"RivalDefeated"
+frame_progress = 0.303557
 
 [node name="punch_cooldown_timer" type="Timer" parent="."]
 

@@ -52,6 +52,7 @@ position = Vector2(691, 448)
 collision_layer = 2
 
 [node name="personaje" parent="." instance=ExtResource("2_8yg71")]
+unique_name_in_owner = true
 position = Vector2(172, 639)
 collision_layer = 2
 

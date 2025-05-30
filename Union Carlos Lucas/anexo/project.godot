@@ -13,7 +13,7 @@ config_version=5
 config/name="Anexo"
 run/main_scene="uid://cw2xasrrro1o0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://d38rtvmo2tn02"
 
 [display]
 

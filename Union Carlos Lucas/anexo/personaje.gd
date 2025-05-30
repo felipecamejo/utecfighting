@@ -109,6 +109,9 @@ func reproducir_animacion(nombre: String) -> void:
 		$AnimatedSprite2D.play(nombre)
 
 func game_over():
+	if get_parent().has_node("EscenarioPrincipal"):
+		var escenario = get_parent().get_node("EscenarioPrincipal")
+		escenario.iniciar_animacion()
 	emit_signal("game_over_triggered")  # Emitir la señal
 	print("¡Juego terminado!")
 	set_physics_process(false)
