@@ -2,11 +2,8 @@ extends CharacterBody2D
 
 enum State { IDLE, MOVE, ATTACK, BLOCK, HIT, RETREAT }
 var current_state = State.IDLE
-var attack_completed = false
-var retreat_distance = 0.0
 var golpes = 0
 var performing_action := false
-var velocidades = [70, 100, 150, 250]
 signal game_over_triggered
 
 @onready var barraVida = $"../Hud/RivalHud/barraVida"
@@ -18,69 +15,56 @@ signal game_over_triggered
 @export var team: int = 2
 @export var speed = 100
 @export var attack_distance = 100
-@export var block_chance = 0.3 # 30% probabilidad de bloquear
+@export var block_chance = 0.3
 @export var retreat_distance_multiplier = 2.5
 var personaje : Node2D
 
 func _ready():
 	personaje = get_parent().get_node("personaje")
 	randomize()
+	_ocultar_no_animatedsprites()
+	punch_cooldown_timer.one_shot = true
+	$Golpe/HitArea.monitoring = false
+	personaje.game_over_triggered.connect(desactivar_movimiento)
 	
+
 func _physics_process(_delta):
+	barraVida.value = vida
+	barraStamina.value = stamina
+
+	_ocultar_no_animatedsprites()
+	if performing_action:
+		return
+
 	var distance = global_position.distance_to(personaje.global_position)
-	$PosicionPrincipal.visible = true
-	$SegundaPosicion.visible = false
-	$Bloqueo.visible = false
-	$Golpe.visible = false
-	$GolpeRecibido.visible = false
-	$Vencido1.visible = false
-	$Vencido2.visible = false
-	
+
 	match current_state:
 		State.IDLE:
+			$AnimatedSprite2D.play("RivalIdle")
 			if distance < 350:
 				current_state = State.MOVE
+
 		State.MOVE:
-			move_towards_player(_delta)
-			if distance <= attack_distance:
+			move_towards_player()
+			$AnimatedSprite2D.play("RivalWalk")
+			if distance < attack_distance and not punch_cooldown_timer.is_stopped():
+				current_state = State.RETREAT
+			elif distance < attack_distance and punch_cooldown_timer.is_stopped():
 				current_state = State.ATTACK
-				attack_completed = false
+				
 		State.ATTACK:
-			if not attack_completed:
-				perform_attack()
+			start_attack()
+			current_state = State.RETREAT
+			
 		State.RETREAT:
 			move_away_from_player()
 			$AnimatedSprite2D.play("RivalWalk")
-			speed = velocidades.pick_random()
 			if distance >= attack_distance * retreat_distance_multiplier:
 				current_state = State.MOVE
-			
-		State.BLOCK: 
-			$PosicionPrincipal.visible = false
-			$Bloqueo.visible = true
-			await get_tree().create_timer(0.8).timeout
-			current_state = State.MOVE
-		State.HIT: 
-			$PosicionPrincipal.visible = false
-			$GolpeRecibido.visible = true
-			await get_tree().create_timer(1.0).timeout
-			current_state = State.RETREAT
-			print(golpes)
-	
-func perform_attack():
-	$Golpe.visible = true
-	$AnimationPlayer.play("Golpe")
-	await $AnimationPlayer.animation_finished
-	$Golpe.visible = false
-	attack_completed = true
-	current_state = State.RETREAT
-	retreat_distance = global_position.distance_to(personaje.global_position)
-	
-	
-func move_towards_player(_delta):
+
+func move_towards_player():
 	var direction = (personaje.global_position - global_position).normalized()
 	set_velocity(direction * speed)
-	$AnimationPlayer.play("Caminar")
 	move_and_slide()
 
 var ya_decidio_timer := false  # variable de control para la decisión del timer
@@ -89,6 +73,7 @@ func move_away_from_player():
 	var direction = (personaje.global_position - global_position).normalized()
 	set_velocity(-direction * speed)
 	move_and_slide()
+
 	# Decidir solo una vez en el ciclo RETREAT antes del próximo ataque
 	if not ya_decidio_timer and current_state == State.RETREAT:
 		var random_value = randi_range(1, 3)  # 1, 2 o 3
@@ -123,55 +108,56 @@ func start_hit():
 	golpes += 1
 	vida -= 10
 	
-func move_away_from_player(_delta):
-	$AnimationPlayer.play("Caminar")
-	#$PosicionPrincipal.visible = true
-	#$Golpe.visible = false
-	var direction = (personaje.global_position - global_position).normalized()
-	var opposite_direction = -direction  # Invertimos la dirección
-	set_velocity(opposite_direction * speed)
-	move_and_slide()
-	
-func get_hit():
-	current_state = State.HIT
-	# Mejorar la reacción física # Configurar knockback
-	var knockback_direction = (global_position - personaje.global_position).normalized()
-	var knockback_power = 200
-	var knockback_duration = 0.3
-	var elapsed_time = 0.0
-	golpes = golpes + 1
-	
-	# Aplicar knockback durante un tiempo corto
-	while elapsed_time < knockback_duration and current_state == State.HIT:
-		velocity = knockback_direction * knockback_power * (1.0 - elapsed_time/knockback_duration)
-		move_and_slide()
-		elapsed_time += get_process_delta_time()
-		await get_tree().process_frame
-		
-		velocity = Vector2.ZERO  # Detener el movimiento después del knockback
-		await get_tree().create_timer(1.0 - knockback_duration).timeout # El resto del tiempo de hit
-		
-		if current_state == State.HIT:
-			current_state = State.MOVE
-			$GolpeRecibido.visible = false
-			$PosicionPrincipal.visible = true
-			
-		$GolpeRecibido.visible = true
-		$PosicionPrincipal.visible = true
-		await get_tree().create_timer(0.5).timeout # Tiempo de im
-		
-		if current_state == State.HIT:
-			current_state = State.MOVE
-		
+	if vida<=0:
+		game_over()
+
+	# Aplicar knockback simple
+	var knockback_distance = 50
+	var direction = (global_position - personaje.global_position).normalized()
+	var knockback_target = global_position + direction * knockback_distance
+
+	var knockback_time = 0.2
+	var elapsed = 0.0
+	var step_time = 0.02  # pequeño delay entre pasos
+
+	while elapsed < knockback_time:
+		global_position = global_position.lerp(knockback_target, 0.1)
+		await get_tree().create_timer(step_time).timeout
+		elapsed += step_time
+
+	await get_tree().create_timer(1.0).timeout
+	current_state = State.RETREAT
+	performing_action = false
+
+
 
 func on_player_attack():
-	if current_state != State.HIT and current_state != State.BLOCK:
-		if randf() < block_chance:  # 30% de probabilidad (block_chance = 0.4)
-			current_state = State.BLOCK
-			#print("¡Bloqueó el ataque!")
-		else:
-			current_state = State.HIT
-			get_hit()  # Aplicar daño y retrocesoT
+	var distance = global_position.distance_to(personaje.global_position)
+	if distance <= attack_distance:
+		if not performing_action:
+			if randf() < block_chance:
+				current_state = State.BLOCK
+				start_block()
+			else:
+				current_state = State.HIT
+				start_hit()
+
+func _ocultar_no_animatedsprites():
+	for child in get_children():
+		if child is AnimatedSprite2D:
+			child.visible = true
+		elif "visible" in child:
+			child.visible = false
+			
+func desactivar_movimiento():
+	set_physics_process(false)
+	print("Movimiento desactivado")
 	
-	
+func game_over():
+	# AQUI AGREGAR ANIMACION DE SOTO VENCIDO POR UNOS SEGUNDOS
+	emit_signal("game_over_triggered") # CON ESTA SEÑAL PODEMOS PONER UNA VICTORIA (jugador saltando o algo)
+	print("¡Juego terminado!")
+	State.RETREAT
+	await get_tree().create_timer(1.0).timeout
+	desactivar_movimiento()
 	

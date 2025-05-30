@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdde6cofq3xh8"]
+[gd_scene load_steps=6 format=3 uid="uid://cdde6cofq3xh8"]
 
-[ext_resource type="Texture2D" uid="uid://bua03utyysp1e" path="res://Imagenes/UTEC_fondo.png" id="1_g73bs"]
-[ext_resource type="Texture2D" uid="uid://dpfiwokei4ccc" path="res://Imagenes/Ring.png" id="2_ku762"]
-[ext_resource type="Texture2D" uid="uid://cwnp1y5mbo73l" path="res://Imagenes/fondoRing.png" id="3_ku762"]
+[ext_resource type="Texture2D" uid="uid://c1i480yc3no3y" path="res://Imagenes/Fondos/fondo.png" id="1_llbg7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g73bs"]
 size = Vector2(683.125, 20)
@@ -19,19 +17,9 @@ size = Vector2(925.875, 20)
 [node name="EscenarioPrincipal" type="StaticBody2D"]
 
 [node name="Fondo" type="Sprite2D" parent="."]
-position = Vector2(588, 308)
+position = Vector2(588, 403)
 scale = Vector2(2.12037, 1.93137)
-texture = ExtResource("1_g73bs")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(585, 297.375)
-scale = Vector2(2.13657, 1.58521)
-texture = ExtResource("2_ku762")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(585, 614.75)
-scale = Vector2(2.13426, 0.288235)
-texture = ExtResource("3_ku762")
+texture = ExtResource("1_llbg7")
 
 [node name="Colision medio" type="CollisionShape2D" parent="."]
 position = Vector2(588.438, 660)
@@ -46,5 +34,5 @@ position = Vector2(1001, 342)
 shape = SubResource("RectangleShape2D_6pwlj")
 
 [node name="Colision arr" type="CollisionShape2D" parent="."]
-position = Vector2(586, 294)
+position = Vector2(585, 328)
 shape = SubResource("RectangleShape2D_06clh")

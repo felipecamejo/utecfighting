@@ -15,6 +15,11 @@ run/main_scene="uid://cw2xasrrro1o0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=916
+window/size/viewport_height=687
+
 [global_group]
 
 hurtbox=""

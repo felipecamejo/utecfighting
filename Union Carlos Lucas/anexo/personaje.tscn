@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://kyuxx8bvemmx"]
+[gd_scene load_steps=28 format=3 uid="uid://kyuxx8bvemmx"]
 
 [ext_resource type="Texture2D" uid="uid://bd74li7h8vjjk" path="res://Imagenes/Personaje/luchador-1.png-removebg-preview.png" id="1_ck3sb"]
 [ext_resource type="Script" uid="uid://c3sy6cpa0ke6v" path="res://personaje.gd" id="1_cx4ix"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://2x8ikxpgr4yx" path="res://Imagenes/Personaje/golpe_sin_piernas-removebg-preview.png" id="5_f8plh"]
 [ext_resource type="Texture2D" uid="uid://cdx8aj8fy215m" path="res://Imagenes/Personaje/se_cubre-removebg-preview.png" id="6_35kqm"]
 [ext_resource type="Texture2D" uid="uid://byjhabdatwfef" path="res://Imagenes/Personaje/golpe_recibido-removebg-preview.png" id="7_35kqm"]
-[ext_resource type="Script" uid="uid://d3b8kppr24xj4" path="res://hurtboxPersonaje.gd" id="8_1y5k2"]
+[ext_resource type="Script" path="res://hurtboxPersonaje.gd" id="8_1y5k2"]
+[ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="9_pqm5q"]
+[ext_resource type="Texture2D" uid="uid://b4dhaatuk60al" path="res://Imagenes/PlayerWalk.png" id="10_2vb47"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqm5q"]
 size = Vector2(5.84375, 36.828)
@@ -18,33 +20,95 @@ size = Vector2(5.5, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35kqm"]
 size = Vector2(152.5, 4)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ck3sb"]
-radius = 6.6515
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeorn"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(151, 269, 34, 65)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y5k2"]
-size = Vector2(86.5, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_chw5a"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(151, 267, 34, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_35kqm"]
-atlas = ExtResource("1_ck3sb")
-region = Rect2(22, 21, 41, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdwyh"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(3, 269, 43, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1y5k2"]
-atlas = ExtResource("1_ck3sb")
-region = Rect2(22, 16, 41, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_h755h"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(3, 267, 43, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyv6t"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(46, 269, 43, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqm5q"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(97, 269, 41, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vb47"]
+atlas = ExtResource("10_2vb47")
+region = Rect2(33, 30, 39, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyluk"]
+atlas = ExtResource("10_2vb47")
+region = Rect2(33, 28, 39, 65)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f8plh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_35kqm")
+"texture": SubResource("AtlasTexture_xeorn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1y5k2")
+"texture": SubResource("AtlasTexture_chw5a")
 }],
 "loop": true,
-"name": &"Movimiento",
+"name": &"PlayerGuard",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdwyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h755h")
+}],
+"loop": true,
+"name": &"PlayerIdle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyv6t")
+}],
+"loop": true,
+"name": &"PlayerPunch",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqm5q")
+}],
+"loop": true,
+"name": &"PlayerPunched",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vb47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyluk")
+}],
+"loop": true,
+"name": &"PlayerWalk",
 "speed": 3.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ck3sb"]
+radius = 6.6515
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y5k2"]
+size = Vector2(86.5, 64)
 
 [sub_resource type="Animation" id="Animation_1y5k2"]
 resource_name = "GolpeRecibido"
@@ -126,7 +190,7 @@ shape = SubResource("RectangleShape2D_35kqm")
 position = Vector2(-4, -47)
 scale = Vector2(3.85976, 2.9)
 sprite_frames = SubResource("SpriteFrames_f8plh")
-animation = &"PlayerGuard"
+animation = &"PlayerPunched"
 
 [node name="PosicionPrincipal" type="Sprite2D" parent="."]
 scale = Vector2(4.0375, 3.03152)
@@ -175,14 +239,6 @@ script = ExtResource("8_1y5k2")
 visible = false
 position = Vector2(-13, -66)
 shape = SubResource("RectangleShape2D_1y5k2")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(-9, -26)
-scale = Vector2(3.85976, 2.9)
-sprite_frames = SubResource("SpriteFrames_f8plh")
-animation = &"Movimiento"
-frame_progress = 0.0293814
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
