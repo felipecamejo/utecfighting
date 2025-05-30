@@ -122,6 +122,12 @@ shape = SubResource("RectangleShape2D_2vb47")
 position = Vector2(-4.25, 37)
 shape = SubResource("RectangleShape2D_35kqm")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, -47)
+scale = Vector2(3.85976, 2.9)
+sprite_frames = SubResource("SpriteFrames_f8plh")
+animation = &"PlayerGuard"
+
 [node name="PosicionPrincipal" type="Sprite2D" parent="."]
 scale = Vector2(4.0375, 3.03152)
 texture = ExtResource("1_ck3sb")
