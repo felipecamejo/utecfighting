@@ -18,6 +18,7 @@ signal game_over_triggered
 @export var block_chance = 0.3
 @export var retreat_distance_multiplier = 2.5
 var personaje : Node2D
+var velocidades = [70, 100, 150, 250]
 
 func _ready():
 	personaje = get_parent().get_node("personaje")
@@ -42,24 +43,31 @@ func _physics_process(_delta):
 		State.IDLE:
 			$AnimatedSprite2D.play("RivalIdle")
 			if distance < 350:
+				speed = velocidades.pick_random()
 				current_state = State.MOVE
 
 		State.MOVE:
+			print(speed)
 			move_towards_player()
 			$AnimatedSprite2D.play("RivalWalk")
 			if distance < attack_distance and not punch_cooldown_timer.is_stopped():
+				speed = velocidades.pick_random()
 				current_state = State.RETREAT
 			elif distance < attack_distance and punch_cooldown_timer.is_stopped():
+				speed = velocidades.pick_random()
 				current_state = State.ATTACK
 				
 		State.ATTACK:
 			start_attack()
+			speed = velocidades.pick_random()
 			current_state = State.RETREAT
 			
 		State.RETREAT:
+			speed = 100
 			move_away_from_player()
 			$AnimatedSprite2D.play("RivalWalk")
 			if distance >= attack_distance * retreat_distance_multiplier:
+				speed = velocidades.pick_random()
 				current_state = State.MOVE
 
 func move_towards_player():
