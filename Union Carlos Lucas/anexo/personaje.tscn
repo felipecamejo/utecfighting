@@ -11,14 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="9_pqm5q"]
 [ext_resource type="Texture2D" uid="uid://b4dhaatuk60al" path="res://Imagenes/PlayerWalk.png" id="10_2vb47"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqm5q"]
-size = Vector2(5.84375, 36.828)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vb47"]
-size = Vector2(5.5, 26)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35kqm"]
-size = Vector2(152.5, 4)
+size = Vector2(152.5, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8vmr"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(192, 268, 43, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vopn2"]
+atlas = ExtResource("9_pqm5q")
+region = Rect2(241, 268, 43, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xeorn"]
 atlas = ExtResource("9_pqm5q")
@@ -54,6 +56,17 @@ region = Rect2(33, 28, 39, 65)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f8plh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8vmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vopn2")
+}],
+"loop": true,
+"name": &"PlayerDefeated",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xeorn")
@@ -174,23 +187,16 @@ _data = {
 position = Vector2(0, -2)
 script = ExtResource("1_cx4ix")
 
-[node name="Delimitador1" type="CollisionShape2D" parent="."]
-position = Vector2(-81.0781, 21.414)
-shape = SubResource("RectangleShape2D_pqm5q")
-
-[node name="Delimitador2" type="CollisionShape2D" parent="."]
-position = Vector2(67.75, 23)
-shape = SubResource("RectangleShape2D_2vb47")
-
 [node name="Delimitador3" type="CollisionShape2D" parent="."]
-position = Vector2(-4.25, 37)
+position = Vector2(-4.25, 42)
 shape = SubResource("RectangleShape2D_35kqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4, -47)
 scale = Vector2(3.85976, 2.9)
 sprite_frames = SubResource("SpriteFrames_f8plh")
-animation = &"PlayerPunched"
+animation = &"PlayerPunch"
+frame_progress = 0.688838
 
 [node name="PosicionPrincipal" type="Sprite2D" parent="."]
 scale = Vector2(4.0375, 3.03152)

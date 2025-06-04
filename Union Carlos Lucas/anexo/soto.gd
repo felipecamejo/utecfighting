@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum State { IDLE, MOVE, ATTACK, BLOCK, HIT, RETREAT }
+enum State { IDLE, MOVE, ATTACK, BLOCK, HIT, RETREAT, FEINT }
 var current_state = State.IDLE
 var golpes = 0
 var performing_action := false
@@ -27,9 +27,8 @@ func _ready():
 	punch_cooldown_timer.one_shot = true
 	$Golpe/HitArea.monitoring = false
 	personaje.game_over_triggered.connect(desactivar_movimiento)
-	
 
-var ya_decidio_timer := false  # variable de control para la decisión del timer
+var ya_decidio_timer := false
 
 func _physics_process(_delta):
 	barraVida.value = vida
@@ -49,49 +48,65 @@ func _physics_process(_delta):
 				current_state = State.MOVE
 
 		State.MOVE:
-			print(speed)
-			move_towards_player()
 			$AnimatedSprite2D.play("RivalWalk")
+			move_towards_player()
+
 			if distance < attack_distance and not punch_cooldown_timer.is_stopped():
 				speed = velocidades.pick_random()
 				current_state = State.RETREAT
 			elif distance < attack_distance and punch_cooldown_timer.is_stopped():
-				speed = velocidades.pick_random()
-				current_state = State.ATTACK
-				
+				if randi() % 6 == 0:
+					current_state = State.FEINT
+				else:
+					speed = velocidades.pick_random()
+					current_state = State.ATTACK
+
 		State.ATTACK:
 			start_attack()
-			speed = velocidades.pick_random()
-			current_state = State.RETREAT
-			
+			await get_tree().create_timer(0.1).timeout
+
+			var decision = randi() % 3  # 0: RETREAT, 1: BLOCK, 2: MOVE
+			match decision:
+				0:
+					current_state = State.RETREAT
+				1:
+					current_state = State.BLOCK
+					start_block()
+				2:
+					speed = velocidades.pick_random()
+					current_state = State.MOVE
+
 		State.RETREAT:
+			$AnimatedSprite2D.play("RivalWalk")
 			speed = 100
 			move_away_from_player()
-			# Decidir solo una vez en el ciclo RETREAT antes del próximo ataque
-			
-			if not ya_decidio_timer and current_state == State.RETREAT:
-				var random_value = randi_range(1, 3)  # 1, 2 o 3
-				punch_cooldown_timer.one_shot = (random_value <= 2)  # true si 1 o 2 (66%) # SIEMPRE TRUE PARA QUE GOLPEE
-				ya_decidio_timer = true
-				print("Decidió punch_cooldown_timer.one_shot =", punch_cooldown_timer.one_shot)
-			$AnimatedSprite2D.play("RivalWalk")
 			if distance >= attack_distance * retreat_distance_multiplier:
 				speed = velocidades.pick_random()
 				current_state = State.MOVE
+
+		State.BLOCK:
+			start_block()
+
+		State.FEINT:
+			move_towards_player()
+			$AnimatedSprite2D.play("RivalWalk")
+			await get_tree().create_timer(randf_range(0.2, 0.4)).timeout
+			var decision = randi() % 2
+			if decision == 0:
+				current_state = State.ATTACK
+			else:
+				speed = velocidades.pick_random()
+				current_state = State.RETREAT
 
 func move_towards_player():
 	var direction = (personaje.global_position - global_position).normalized()
 	set_velocity(direction * speed)
 	move_and_slide()
 
-
-
 func move_away_from_player():
 	var direction = (personaje.global_position - global_position).normalized()
 	set_velocity(-direction * speed)
 	move_and_slide()
-
-
 
 func start_attack():
 	performing_action = true
@@ -99,11 +114,9 @@ func start_attack():
 	$Golpe/HitArea.monitoring = true
 	punch_cooldown_timer.start()
 	await get_tree().create_timer(0.6).timeout
-	current_state = State.RETREAT
 	$Golpe/HitArea.monitoring = false
-	ya_decidio_timer = false  # Reseteamos para la próxima vez que ataque
+	ya_decidio_timer = false
 	performing_action = false
-
 
 func start_block():
 	performing_action = true
@@ -117,18 +130,16 @@ func start_hit():
 	$AnimatedSprite2D.play("RivalPunched")
 	golpes += 1
 	vida -= 10
-	
-	if vida<=0:
+
+	if vida <= 0:
 		game_over()
 
-	# Aplicar knockback simple
 	var knockback_distance = 50
 	var direction = (global_position - personaje.global_position).normalized()
 	var knockback_target = global_position + direction * knockback_distance
-
 	var knockback_time = 0.2
 	var elapsed = 0.0
-	var step_time = 0.02  # pequeño delay entre pasos
+	var step_time = 0.02
 
 	while elapsed < knockback_time:
 		global_position = global_position.lerp(knockback_target, 0.1)
@@ -138,8 +149,6 @@ func start_hit():
 	await get_tree().create_timer(1.0).timeout
 	current_state = State.RETREAT
 	performing_action = false
-
-
 
 func on_player_attack():
 	var distance = global_position.distance_to(personaje.global_position)
@@ -158,20 +167,21 @@ func _ocultar_no_animatedsprites():
 			child.visible = true
 		elif "visible" in child:
 			child.visible = false
-			
+
 func desactivar_movimiento():
 	set_physics_process(false)
-	$AnimatedSprite2D.play("RivalDefeated")
+	if self.vida <= 0:
+		$AnimatedSprite2D.play("RivalDefeated")
+	elif personaje.vida <= 0:
+		personaje.get_node("AnimatedSprite2D").play("PlayerDefeated")
+
 	if get_parent().has_node("EscenarioPrincipal"):
 		var escenario = get_parent().get_node("EscenarioPrincipal")
 		escenario.iniciar_animacion()
 	print("Movimiento desactivado")
-	
+
 func game_over():
-	# AQUI AGREGAR ANIMACION DE SOTO VENCIDO POR UNOS SEGUNDOS
-	emit_signal("game_over_triggered") # CON ESTA SEÑAL PODEMOS PONER UNA VICTORIA (jugador saltando o algo)
+	emit_signal("game_over_triggered")
 	print("¡Juego terminado!")
-	State.RETREAT
 	await get_tree().create_timer(1.0).timeout
 	desactivar_movimiento()
-	

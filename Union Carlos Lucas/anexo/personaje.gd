@@ -39,13 +39,24 @@ func actualizar_vida():
 	barraVida.value = vida
 
 func procesar_movimiento() -> void:
-	var enemigo = $"../soto" # Cambia según estructura real
+	var enemigo = $"../soto" # Ajustá si el path cambia
 	var _distancia = abs(position.x - enemigo.position.x)
-	var direccion = Input.get_axis("direccionIzq", "direccionDer")
-	velocity.x = movimiento * direccion
+
+	# Ejes de entrada
+	var direccion_x = Input.get_axis("direccionIzq", "direccionDer")
+	var direccion_y = Input.get_axis("direccionArr", "direccionAba")
+
+	# Asignar velocidad en ambos ejes
+	velocity.x = movimiento * direccion_x
+	velocity.y = movimiento * direccion_y
+	
+	var direccion := Vector2(direccion_x, direccion_y)
+	if direccion.length() > 1:
+		direccion = direccion.normalized()
+	velocity = direccion * movimiento
 	move_and_slide()
 
-	if direccion != 0:
+	if velocity.x != 0 or velocity.y != 0:
 		$AnimatedSprite2D.flip_h = enemigo.position.x > position.x
 
 func procesar_animacion() -> void:

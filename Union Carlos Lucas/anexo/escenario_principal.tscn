@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://cg11ler3rak2f" path="res://Imagenes/Campana.png" id="5_06clh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g73bs"]
-size = Vector2(683.125, 20)
+size = Vector2(754, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku762"]
-size = Vector2(76.5, 638.5)
+size = Vector2(76.5, 685.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6pwlj"]
-size = Vector2(82, 638.25)
+size = Vector2(82, 690.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06clh"]
 size = Vector2(925.875, 20)
@@ -87,15 +87,15 @@ scale = Vector2(0.998919, 0.181828)
 texture = ExtResource("3_ku762")
 
 [node name="Colision medio" type="CollisionShape2D" parent="."]
-position = Vector2(588.438, 660)
+position = Vector2(580, 695)
 shape = SubResource("RectangleShape2D_g73bs")
 
 [node name="Colision izq" type="CollisionShape2D" parent="."]
-position = Vector2(163.75, 338)
+position = Vector2(163.75, 361.375)
 shape = SubResource("RectangleShape2D_ku762")
 
 [node name="Colision der" type="CollisionShape2D" parent="."]
-position = Vector2(1001, 342)
+position = Vector2(1001, 367.938)
 shape = SubResource("RectangleShape2D_6pwlj")
 
 [node name="Colision arr" type="CollisionShape2D" parent="."]
@@ -106,9 +106,13 @@ shape = SubResource("RectangleShape2D_06clh")
 wait_time = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Timer"]
-position = Vector2(462, 304)
-scale = Vector2(1.47656, 1.41797)
+position = Vector2(472, 105)
+scale = Vector2(4.67578, 4.92773)
 sprite_frames = SubResource("SpriteFrames_3dtjx")
 frame_progress = 0.868075
+
+[node name="Colision medio2" type="CollisionShape2D" parent="."]
+position = Vector2(581, 636)
+shape = SubResource("RectangleShape2D_g73bs")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

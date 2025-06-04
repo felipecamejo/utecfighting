@@ -53,7 +53,7 @@ collision_layer = 2
 
 [node name="personaje" parent="." instance=ExtResource("2_8yg71")]
 unique_name_in_owner = true
-position = Vector2(172, 639)
+position = Vector2(155, 645)
 collision_layer = 2
 
 [node name="Hud" type="CanvasLayer" parent="."]
