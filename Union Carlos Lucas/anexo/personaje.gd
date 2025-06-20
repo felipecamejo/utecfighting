@@ -39,8 +39,14 @@ func actualizar_vida():
 	barraVida.value = vida
 
 func procesar_movimiento() -> void:
-	var enemigo = $"../soto" # Ajustá si el path cambia
+	var enemigo = $"../soto"
 	var _distancia = abs(position.x - enemigo.position.x)
+
+	# Si se está cubriendo, no permitir movimiento
+	if Input.is_action_pressed("cubrirse"):
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
 	# Ejes de entrada
 	var direccion_x = Input.get_axis("direccionIzq", "direccionDer")
@@ -127,5 +133,4 @@ func game_over():
 	print("¡Juego terminado!")
 	set_physics_process(false)
 	
-	# AQUI AGREGAR ESCENA DE JUGADOR VENCIDO POR UNOS SEGUNDOS O ANIMACION
 	

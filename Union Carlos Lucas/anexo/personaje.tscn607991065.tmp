@@ -118,7 +118,6 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqm5q"]
-size = Vector2(27.8472, 39.4792)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y5k2"]
 size = Vector2(86.5, 64)
@@ -195,7 +194,8 @@ shape = SubResource("RectangleShape2D_35kqm")
 position = Vector2(-4, -47)
 scale = Vector2(3.85976, 2.9)
 sprite_frames = SubResource("SpriteFrames_f8plh")
-animation = &"PlayerGuard"
+animation = &"PlayerPunch"
+frame_progress = 0.688838
 
 [node name="PosicionPrincipal" type="Sprite2D" parent="."]
 scale = Vector2(4.0375, 3.03152)
@@ -208,7 +208,6 @@ scale = Vector2(3.30937, 2.86625)
 texture = ExtResource("2_cx4ix")
 
 [node name="Golpe" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-23, -73)
 scale = Vector2(3.59103, 3.34353)
 texture = ExtResource("5_f8plh")
@@ -219,7 +218,7 @@ collision_mask = 4
 script = ExtResource("5_cx4ix")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Golpe/Hitbox"]
-position = Vector2(13.3666, -32.0021)
+position = Vector2(7.24027, -24.8241)
 shape = SubResource("RectangleShape2D_pqm5q")
 
 [node name="Cubrirse" type="Sprite2D" parent="."]

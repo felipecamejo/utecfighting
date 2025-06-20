@@ -159,7 +159,18 @@ func on_player_attack():
 				start_block()
 			else:
 				current_state = State.HIT
+				cancelar_accion_actual()
 				start_hit()
+
+func cancelar_accion_actual():
+# Detén cualquier animación relevante
+	$AnimatedSprite2D.stop()
+# Desactiva el área de golpe si estaba activa
+	$Golpe/HitArea.monitoring = false
+	# Detén timers si es necesario
+	punch_cooldown_timer.stop()
+	# Restablece la variable de acción
+	performing_action = false
 
 func _ocultar_no_animatedsprites():
 	for child in get_children():

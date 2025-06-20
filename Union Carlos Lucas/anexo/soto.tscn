@@ -275,6 +275,7 @@ scale = Vector2(2.80952, 2.39607)
 texture = ExtResource("4_yirl4")
 
 [node name="HitArea" type="Area2D" parent="Golpe"]
+visible = false
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("7_oulaw")
