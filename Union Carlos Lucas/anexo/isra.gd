@@ -31,8 +31,7 @@ func _ready():
 var ya_decidio_timer := false
 
 func _physics_process(_delta):
-	barraVida.value = vida
-	barraStamina.value = stamina
+	#barraVida.value = vida
 
 	_ocultar_no_animatedsprites()
 	if performing_action:
