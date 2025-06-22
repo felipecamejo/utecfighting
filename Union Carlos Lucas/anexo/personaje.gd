@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var team: int = 1
 @export var movimiento := 200
-@export var vida := 50
+@export var vida := 100
 @export var stamina := 100.0
 @export var block_chance := 0.3
 @export var attack_cooldown: float = 0.3

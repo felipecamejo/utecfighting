@@ -9,7 +9,7 @@ signal game_over_triggered
 @onready var barraVida = $"../Hud/RivalHud/barraVida"
 @onready var barraStamina = $"../Hud/RivalHud/barraStamina"
 @onready var punch_cooldown_timer: Timer = $punch_cooldown_timer
-@export var vida := 100
+@export var vida := 50
 @export var stamina := 100
 
 @export var team: int = 2
