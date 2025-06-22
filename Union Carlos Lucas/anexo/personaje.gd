@@ -8,8 +8,8 @@ extends CharacterBody2D
 @export var attack_cooldown: float = 0.3
 
 #Hud
-@onready var barraVida = $"../Hud/PlayerHud/barraVida"
-@onready var barraStamina = $"../Hud/PlayerHud/barraStamina"
+@onready var barraVida = $"../Hud/PlayerHud/Vida"
+@onready var barraStamina = $"../Hud/PlayerHud/Stamina"
 
 
 var is_attacking := false

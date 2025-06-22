@@ -6,11 +6,9 @@ var golpes = 0
 var performing_action := false
 signal game_over_triggered
 
-@onready var barraVida = $"../Hud/RivalHud/barraVida"
-@onready var barraStamina = $"../Hud/RivalHud/barraStamina"
+@onready var barraVida = $"../Hud/RivalHud/Vida"
 @onready var punch_cooldown_timer: Timer = $punch_cooldown_timer
 @export var vida := 100
-@export var stamina := 100
 
 @export var team: int = 2
 @export var speed = 100
@@ -32,7 +30,7 @@ var ya_decidio_timer := false
 
 func _physics_process(_delta):
 	barraVida.value = vida
-	barraStamina.value = stamina
+	
 
 	_ocultar_no_animatedsprites()
 	if performing_action:

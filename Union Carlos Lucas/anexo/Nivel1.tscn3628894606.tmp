@@ -1,18 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://cw2xasrrro1o0"]
+[gd_scene load_steps=20 format=3 uid="uid://cw2xasrrro1o0"]
 
 [ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_kuiop"]
 [ext_resource type="PackedScene" uid="uid://kyuxx8bvemmx" path="res://personaje.tscn" id="2_8yg71"]
 [ext_resource type="PackedScene" uid="uid://cok6d02gxxx3q" path="res://soto.tscn" id="3_i1n8g"]
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="4_8cp3p"]
 [ext_resource type="Script" uid="uid://dk7vn31i1nksd" path="res://hud.gd" id="4_ydtn4"]
-[ext_resource type="Script" uid="uid://bdx2mlvp7284u" path="res://texture_rect.gd" id="5_s48l2"]
-
-[sub_resource type="Gradient" id="Gradient_s48l2"]
-offsets = PackedFloat32Array(0, 0.307018, 1)
-colors = PackedColorArray(1, 1, 0.890196, 1, 1, 1, 0.905882, 0.756863, 1, 1, 1, 0)
+[ext_resource type="Script" uid="uid://bviu4vavpqis0" path="res://texture_rect.gd" id="5_s48l2"]
+[ext_resource type="Script" uid="uid://c3ut7bonmjj6c" path="res://pjImagen.gd" id="5_ydtn4"]
+[ext_resource type="Script" uid="uid://cnhf4nmcuros1" path="res://caraRival.gd" id="7_hv2ca"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_s48l2"]
-gradient = SubResource("Gradient_s48l2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv2ca"]
 atlas = ExtResource("4_8cp3p")
@@ -72,18 +69,15 @@ collision_layer = 2
 
 [node name="personaje" parent="." instance=ExtResource("2_8yg71")]
 unique_name_in_owner = true
-position = Vector2(191, 633)
+position = Vector2(155, 645)
 collision_layer = 2
 
 [node name="Hud" type="CanvasLayer" parent="."]
 script = ExtResource("4_ydtn4")
 
 [node name="TextureRect" type="TextureRect" parent="Hud"]
-offset_left = 916.0
-offset_top = 2.0
-offset_right = 1172.0
-offset_bottom = 919.0
-rotation = 1.5708
+offset_right = 916.0
+offset_bottom = 190.0
 texture = SubResource("GradientTexture1D_s48l2")
 script = ExtResource("5_s48l2")
 
@@ -92,7 +86,6 @@ layout_mode = 3
 anchor_left = 0.00655022
 anchor_top = -0.00582242
 anchor_right = 0.105441
-anchor_bottom = 0.0407569
 offset_left = -5.0
 offset_top = 8.0
 offset_right = 300.416
@@ -101,30 +94,29 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Hud/PlayerHud"]
 layout_mode = 2
-anchor_left = 0.0631313
+anchor_left = 0.010101
 anchor_top = -0.0425532
-anchor_right = 0.0631313
+anchor_right = 0.010101
 anchor_bottom = -0.0425532
 offset_left = 105.0
 offset_top = 3.0
 offset_right = 168.0
 offset_bottom = 26.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Player 1"
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/PlayerHud"]
-position = Vector2(50.375, 59.5313)
-scale = Vector2(1.34063, 1.28802)
+position = Vector2(54, 48)
+scale = Vector2(1.0875, 1.04897)
 sprite_frames = SubResource("SpriteFrames_s48l2")
 animation = &"caraPj"
-flip_h = true
+script = ExtResource("5_ydtn4")
 
 [node name="Vida" type="TextureProgressBar" parent="Hud/PlayerHud"]
 layout_mode = 0
-offset_left = 130.0
+offset_left = 109.0
 offset_top = 23.0
-offset_right = 346.0
+offset_right = 325.0
 offset_bottom = 33.0
 value = 100.0
 nine_patch_stretch = true
@@ -133,9 +125,9 @@ texture_progress = SubResource("GradientTexture2D_516i8")
 
 [node name="Stamina" type="TextureProgressBar" parent="Hud/PlayerHud"]
 layout_mode = 0
-offset_left = 130.0
+offset_left = 109.0
 offset_top = 35.0
-offset_right = 286.0
+offset_right = 265.0
 offset_bottom = 45.0
 value = 100.0
 nine_patch_stretch = true
@@ -145,8 +137,7 @@ texture_progress = SubResource("GradientTexture1D_0m4yf")
 [node name="RivalHud" type="Control" parent="Hud"]
 layout_mode = 3
 anchor_left = 0.0633188
-anchor_right = 0.045393
-anchor_bottom = 0.0422125
+anchor_right = 0.0170088
 offset_left = 471.0
 offset_top = 4.0
 offset_right = 875.42
@@ -155,36 +146,36 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Hud/RivalHud"]
 layout_mode = 2
-anchor_left = -0.138122
-anchor_top = -0.0333333
-anchor_right = -0.138122
-anchor_bottom = -0.0333333
+anchor_left = -0.0801105
+anchor_top = -0.0555556
+anchor_right = -0.0801105
+anchor_bottom = -0.0555556
 offset_left = 245.0
 offset_top = 3.0
 offset_right = 308.0
 offset_bottom = 26.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Soto"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/RivalHud"]
+position = Vector2(381, 47)
+scale = Vector2(1, 0.92268)
+sprite_frames = SubResource("SpriteFrames_s48l2")
+animation = &"new_animation"
+script = ExtResource("7_hv2ca")
+
 [node name="Vida" type="TextureProgressBar" parent="Hud/RivalHud"]
 layout_mode = 0
-offset_left = 42.0
-offset_top = 23.0
-offset_right = 258.0
-offset_bottom = 33.0
+offset_left = 63.0
+offset_top = 21.0
+offset_right = 279.0
+offset_bottom = 31.0
 value = 100.0
 fill_mode = 1
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture1D_afh24")
 texture_progress = SubResource("GradientTexture2D_516i8")
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Hud/RivalHud"]
-position = Vector2(353, 57)
-scale = Vector2(1.34063, 1.28802)
-sprite_frames = SubResource("SpriteFrames_s48l2")
-animation = &"caraPj"
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(916, 687)
