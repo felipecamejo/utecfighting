@@ -1,10 +1,9 @@
-#class_name HurtArea
 extends Area2D
 
 @export var damage := 10
 @export_enum("No es jugador", "Jugador", "Enemigo") var team := 0
 
-#soto
+
 func _on_area_entered(area: Area2D):
 	# Todas las verificaciones necesarias
 	if !area: return

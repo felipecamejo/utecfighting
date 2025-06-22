@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://doi6ivqklqi4t" path="res://Imagenes/Soto/larecibe mejora.png" id="5_3gske"]
 [ext_resource type="Texture2D" uid="uid://dmmmylwiptqbq" path="res://Imagenes/Soto/vencido1 mejora.png" id="6_k1aln"]
 [ext_resource type="Texture2D" uid="uid://c66vwurcucblv" path="res://Imagenes/Soto/vencido2.png" id="7_mc208"]
-[ext_resource type="Script" path="res://hitboxSoto.gd" id="7_oulaw"]
+[ext_resource type="Script" path="res://hitboxSoto.gd" id="7_u73l8"]
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="11_u73l8"]
 [ext_resource type="Texture2D" uid="uid://ccp3o6erw6mv" path="res://Imagenes/SotoWalk.png" id="12_dokrn"]
 
@@ -278,9 +278,10 @@ texture = ExtResource("4_yirl4")
 visible = false
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("7_oulaw")
+script = ExtResource("7_u73l8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Golpe/HitArea"]
+visible = false
 position = Vector2(4.62712, -2.08675)
 shape = SubResource("RectangleShape2D_yjyul")
 
@@ -312,8 +313,8 @@ libraries = {
 position = Vector2(4, -9)
 scale = Vector2(2.70455, 2.40588)
 sprite_frames = SubResource("SpriteFrames_o01bj")
-animation = &"RivalDefeated"
-frame_progress = 0.303557
+animation = &"RivalWalk"
+frame_progress = 0.878909
 
 [node name="punch_cooldown_timer" type="Timer" parent="."]
 

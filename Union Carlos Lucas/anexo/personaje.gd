@@ -39,8 +39,13 @@ func actualizar_vida():
 	barraVida.value = vida
 
 func procesar_movimiento() -> void:
-	var enemigo = $"../soto"
-	var _distancia = abs(position.x - enemigo.position.x)
+	var enemigo := get_node_or_null("../soto")
+	if enemigo == null:
+		enemigo = get_node_or_null("../Isra")
+	if enemigo != null:
+		var _distancia = abs(position.x - enemigo.position.x)
+	else:
+		print("No se encontró enemigo.")
 
 	# Si se está cubriendo, no permitir movimiento
 	if Input.is_action_pressed("cubrirse"):
@@ -66,10 +71,13 @@ func procesar_movimiento() -> void:
 		$AnimatedSprite2D.flip_h = enemigo.position.x > position.x
 
 func procesar_animacion() -> void:
-	var enemigo = $"../soto"
-	var distancia = abs(position.x - enemigo.position.x)
+	var enemigo = get_node_or_null("../soto")
+	if enemigo == null:
+		enemigo = get_node_or_null("../Isra")
+	var distancia = 9999  # valor por defecto grande
+	if enemigo != null:
+		distancia = abs(position.x - enemigo.position.x)
 	var anim = "PlayerIdle"
-
 	if recibiendo_golpe:
 		anim = "PlayerPunched"
 	elif is_attacking:
@@ -80,6 +88,8 @@ func procesar_animacion() -> void:
 		anim = "PlayerIdle"
 	elif abs(velocity.x) >= 0:
 		anim = "PlayerWalk"
+
+	reproducir_animacion(anim)
 	
 
 	reproducir_animacion(anim)
