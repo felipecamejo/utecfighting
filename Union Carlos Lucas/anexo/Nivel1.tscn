@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://cw2xasrrro1o0"]
+[gd_scene load_steps=26 format=3 uid="uid://cw2xasrrro1o0"]
 
 [ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_kuiop"]
 [ext_resource type="PackedScene" uid="uid://kyuxx8bvemmx" path="res://personaje.tscn" id="2_8yg71"]
 [ext_resource type="PackedScene" uid="uid://cok6d02gxxx3q" path="res://soto.tscn" id="3_i1n8g"]
-[ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="4_8cp3p"]
 [ext_resource type="Script" uid="uid://dk7vn31i1nksd" path="res://hud.gd" id="4_ydtn4"]
 [ext_resource type="Script" uid="uid://bdx2mlvp7284u" path="res://texture_rect.gd" id="5_s48l2"]
+[ext_resource type="Texture2D" uid="uid://cewr6qex6887t" path="res://Imagenes/frames_pj.png" id="6_ydtn4"]
 
 [sub_resource type="Gradient" id="Gradient_s48l2"]
 offsets = PackedFloat32Array(0, 0.307018, 1)
@@ -15,14 +15,68 @@ colors = PackedColorArray(1, 1, 0.890196, 1, 1, 1, 0.905882, 0.756863, 1, 1, 1, 
 gradient = SubResource("Gradient_s48l2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv2ca"]
-atlas = ExtResource("4_8cp3p")
-region = Rect2(0, 365, 80, 97)
+atlas = ExtResource("6_ydtn4")
+region = Rect2(1, 202, 90, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s48l2"]
+atlas = ExtResource("6_ydtn4")
+region = Rect2(91, 202, 90, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpwqs"]
+atlas = ExtResource("6_ydtn4")
+region = Rect2(181, 202, 90, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afh24"]
+atlas = ExtResource("6_ydtn4")
+region = Rect2(271, 202, 90, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poccc"]
+atlas = ExtResource("6_ydtn4")
+region = Rect2(1, 103, 90, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_516i8"]
+atlas = ExtResource("6_ydtn4")
+region = Rect2(91, 103, 90, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnvlo"]
+atlas = ExtResource("6_ydtn4")
+region = Rect2(181, 103, 90, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtu3r"]
+atlas = ExtResource("6_ydtn4")
+region = Rect2(271, 103, 90, 98)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s48l2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hv2ca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s48l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpwqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afh24")
+}],
+"loop": true,
+"name": &"Soto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poccc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_516i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnvlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtu3r")
 }],
 "loop": true,
 "name": &"caraPj",
@@ -114,7 +168,7 @@ text = "Player 1"
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/PlayerHud"]
-position = Vector2(50.375, 59.5313)
+position = Vector2(59, 64)
 scale = Vector2(1.34063, 1.28802)
 sprite_frames = SubResource("SpriteFrames_s48l2")
 animation = &"caraPj"
@@ -144,7 +198,7 @@ texture_progress = SubResource("GradientTexture1D_0m4yf")
 
 [node name="RivalHud" type="Control" parent="Hud"]
 layout_mode = 3
-anchor_left = 0.0633188
+anchor_left = 0.045393
 anchor_right = 0.045393
 anchor_bottom = 0.0422125
 offset_left = 471.0
@@ -155,10 +209,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Hud/RivalHud"]
 layout_mode = 2
-anchor_left = -0.138122
-anchor_top = -0.0333333
-anchor_right = -0.138122
-anchor_bottom = -0.0333333
+anchor_left = -0.0855052
+anchor_top = -0.0420168
+anchor_right = -0.0855052
+anchor_bottom = -0.0420168
 offset_left = 245.0
 offset_top = 3.0
 offset_right = 308.0
@@ -170,9 +224,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Vida" type="TextureProgressBar" parent="Hud/RivalHud"]
 layout_mode = 0
-offset_left = 42.0
+offset_left = 57.42
 offset_top = 23.0
-offset_right = 258.0
+offset_right = 273.42
 offset_bottom = 33.0
 value = 100.0
 fill_mode = 1
@@ -180,11 +234,11 @@ nine_patch_stretch = true
 texture_under = SubResource("GradientTexture1D_afh24")
 texture_progress = SubResource("GradientTexture2D_516i8")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Hud/RivalHud"]
-position = Vector2(353, 57)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/RivalHud"]
+position = Vector2(345.42, 66)
 scale = Vector2(1.34063, 1.28802)
 sprite_frames = SubResource("SpriteFrames_s48l2")
-animation = &"caraPj"
+animation = &"Soto"
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(916, 687)

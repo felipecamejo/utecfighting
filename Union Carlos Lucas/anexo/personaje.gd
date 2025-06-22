@@ -10,7 +10,7 @@ extends CharacterBody2D
 #Hud
 @onready var barraVida = $"../Hud/PlayerHud/Vida"
 @onready var barraStamina = $"../Hud/PlayerHud/Stamina"
-
+@onready var spriteHud = $"../Hud/PlayerHud/AnimatedSprite2D"
 
 var is_attacking := false
 var can_attack := true
@@ -23,10 +23,21 @@ func _ready() -> void:
 
 func _physics_process(_delta):
 	actualizar_stamina()
+	actualizar_SpriteHud()
 	actualizar_vida()
 	procesar_movimiento()
 	procesar_animacion()
 	procesar_ataque()
+
+func actualizar_SpriteHud():
+	if vida <= 25:
+		spriteHud.frame = 3
+	elif vida <= 50:
+		spriteHud.frame = 2
+	elif vida <= 75:
+		spriteHud.frame = 1
+	else:
+		spriteHud.frame = 0
 
 func actualizar_stamina():
 	if stamina < 100 and not is_attacking:

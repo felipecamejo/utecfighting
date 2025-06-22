@@ -7,6 +7,7 @@ var performing_action := false
 signal game_over_triggered
 
 @onready var barraVida = $"../Hud/RivalHud/Vida"
+@onready var spriteHud = $"../Hud/RivalHud/AnimatedSprite2D"
 @onready var punch_cooldown_timer: Timer = $punch_cooldown_timer
 @export var vida := 100
 
@@ -30,8 +31,8 @@ var ya_decidio_timer := false
 
 func _physics_process(_delta):
 	barraVida.value = vida
+	actualizar_SpriteHud()
 	
-
 	_ocultar_no_animatedsprites()
 	if performing_action:
 		return
@@ -95,6 +96,16 @@ func _physics_process(_delta):
 			else:
 				speed = velocidades.pick_random()
 				current_state = State.RETREAT
+
+func actualizar_SpriteHud():
+	if vida <= 25:
+		spriteHud.frame = 3
+	elif vida <= 50:
+		spriteHud.frame = 2
+	elif vida <= 75:
+		spriteHud.frame = 1
+	else:
+		spriteHud.frame = 0
 
 func move_towards_player():
 	var direction = (personaje.global_position - global_position).normalized()
