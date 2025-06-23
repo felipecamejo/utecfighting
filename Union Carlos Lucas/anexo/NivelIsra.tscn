@@ -1,52 +1,52 @@
-[gd_scene load_steps=26 format=3 uid="uid://cw2xasrrro1o0"]
+[gd_scene load_steps=26 format=3 uid="uid://dq5yp61mn1wdy"]
 
-[ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_kuiop"]
-[ext_resource type="PackedScene" uid="uid://kyuxx8bvemmx" path="res://personaje.tscn" id="2_8yg71"]
-[ext_resource type="PackedScene" uid="uid://cok6d02gxxx3q" path="res://soto.tscn" id="3_i1n8g"]
-[ext_resource type="Script" uid="uid://dk7vn31i1nksd" path="res://hud.gd" id="4_ydtn4"]
-[ext_resource type="Script" uid="uid://bdx2mlvp7284u" path="res://texture_rect.gd" id="5_s48l2"]
-[ext_resource type="Texture2D" uid="uid://cewr6qex6887t" path="res://Imagenes/frames_pj.png" id="6_ydtn4"]
+[ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_5obcu"]
+[ext_resource type="PackedScene" uid="uid://dwoltvcyl3si5" path="res://isra.tscn" id="2_on1om"]
+[ext_resource type="PackedScene" uid="uid://kyuxx8bvemmx" path="res://personaje.tscn" id="3_aljxk"]
+[ext_resource type="Script" uid="uid://dk7vn31i1nksd" path="res://hud.gd" id="4_birvf"]
+[ext_resource type="Script" uid="uid://bdx2mlvp7284u" path="res://texture_rect.gd" id="5_7rqgk"]
+[ext_resource type="Texture2D" uid="uid://cewr6qex6887t" path="res://Imagenes/frames_pj.png" id="6_7owii"]
 
-[sub_resource type="Gradient" id="Gradient_ydtn4"]
+[sub_resource type="Gradient" id="Gradient_s48l2"]
 offsets = PackedFloat32Array(0, 0.307018, 1)
 colors = PackedColorArray(1, 1, 0.890196, 1, 1, 1, 0.905882, 0.756863, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_s48l2"]
-gradient = SubResource("Gradient_ydtn4")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wyxxu"]
+gradient = SubResource("Gradient_s48l2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv2ca"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(1, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s48l2"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(91, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpwqs"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(181, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_afh24"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(271, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poccc"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(1, 103, 90, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_516i8"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(91, 103, 90, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnvlo"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(181, 103, 90, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xtu3r"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_7owii")
 region = Rect2(271, 103, 90, 98)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_s48l2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qu2y2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -88,49 +88,46 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_hv2ca"]
+[sub_resource type="Gradient" id="Gradient_qpwqs"]
 offsets = PackedFloat32Array(0.485714)
 colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_afh24"]
-gradient = SubResource("Gradient_hv2ca")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_twrhq"]
+gradient = SubResource("Gradient_qpwqs")
 
-[sub_resource type="Gradient" id="Gradient_s48l2"]
+[sub_resource type="Gradient" id="Gradient_poccc"]
 colors = PackedColorArray(0.909804, 0.117647, 0, 1, 0.909936, 6.257e-07, 1.34766e-06, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_516i8"]
-gradient = SubResource("Gradient_s48l2")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2h62y"]
+gradient = SubResource("Gradient_poccc")
 metadata/_snap_count = 2
 
-[sub_resource type="Gradient" id="Gradient_qpwqs"]
+[sub_resource type="Gradient" id="Gradient_lnvlo"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xtu3r"]
-gradient = SubResource("Gradient_qpwqs")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sp62c"]
+gradient = SubResource("Gradient_lnvlo")
 
-[sub_resource type="Gradient" id="Gradient_afh24"]
+[sub_resource type="Gradient" id="Gradient_eh8kl"]
 colors = PackedColorArray(1, 0.596078, 0.054902, 1, 1, 0.478431, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0m4yf"]
-gradient = SubResource("Gradient_afh24")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yjuk5"]
+gradient = SubResource("Gradient_eh8kl")
 
-[node name="Nivel1" type="Node2D"]
+[node name="NivelIsra" type="Node2D"]
 
-[node name="EscenarioPrincipal" parent="." instance=ExtResource("1_kuiop")]
+[node name="EscenarioPrincipal" parent="." instance=ExtResource("1_5obcu")]
 position = Vector2(-130, 35)
 
-[node name="soto" parent="." instance=ExtResource("3_i1n8g")]
-position = Vector2(691, 448)
-collision_layer = 2
+[node name="Isra" parent="." instance=ExtResource("2_on1om")]
+position = Vector2(727, 443)
 
-[node name="personaje" parent="." instance=ExtResource("2_8yg71")]
-unique_name_in_owner = true
-position = Vector2(191, 633)
-collision_layer = 2
+[node name="personaje" parent="." instance=ExtResource("3_aljxk")]
+position = Vector2(175, 633)
 
 [node name="Hud" type="CanvasLayer" parent="."]
-script = ExtResource("4_ydtn4")
+script = ExtResource("4_birvf")
 
 [node name="TextureRect" type="TextureRect" parent="Hud"]
 offset_left = 916.0
@@ -138,8 +135,8 @@ offset_top = 2.0
 offset_right = 1172.0
 offset_bottom = 919.0
 rotation = 1.5708
-texture = SubResource("GradientTexture1D_s48l2")
-script = ExtResource("5_s48l2")
+texture = SubResource("GradientTexture1D_wyxxu")
+script = ExtResource("5_7rqgk")
 
 [node name="PlayerHud" type="Control" parent="Hud"]
 layout_mode = 3
@@ -170,7 +167,7 @@ metadata/_edit_use_anchors_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/PlayerHud"]
 position = Vector2(59, 64)
 scale = Vector2(1.34063, 1.28802)
-sprite_frames = SubResource("SpriteFrames_s48l2")
+sprite_frames = SubResource("SpriteFrames_qu2y2")
 animation = &"caraPj"
 flip_h = true
 
@@ -182,8 +179,8 @@ offset_right = 346.0
 offset_bottom = 33.0
 value = 100.0
 nine_patch_stretch = true
-texture_under = SubResource("GradientTexture1D_afh24")
-texture_progress = SubResource("GradientTexture2D_516i8")
+texture_under = SubResource("GradientTexture1D_twrhq")
+texture_progress = SubResource("GradientTexture2D_2h62y")
 
 [node name="Stamina" type="TextureProgressBar" parent="Hud/PlayerHud"]
 layout_mode = 0
@@ -193,8 +190,8 @@ offset_right = 286.0
 offset_bottom = 45.0
 value = 100.0
 nine_patch_stretch = true
-texture_under = SubResource("GradientTexture2D_xtu3r")
-texture_progress = SubResource("GradientTexture1D_0m4yf")
+texture_under = SubResource("GradientTexture2D_sp62c")
+texture_progress = SubResource("GradientTexture1D_yjuk5")
 
 [node name="RivalHud" type="Control" parent="Hud"]
 layout_mode = 3
@@ -231,11 +228,11 @@ offset_bottom = 33.0
 value = 100.0
 fill_mode = 1
 nine_patch_stretch = true
-texture_under = SubResource("GradientTexture1D_afh24")
-texture_progress = SubResource("GradientTexture2D_516i8")
+texture_under = SubResource("GradientTexture1D_twrhq")
+texture_progress = SubResource("GradientTexture2D_2h62y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud/RivalHud"]
 position = Vector2(345.42, 66)
 scale = Vector2(1.34063, 1.28802)
-sprite_frames = SubResource("SpriteFrames_s48l2")
+sprite_frames = SubResource("SpriteFrames_qu2y2")
 animation = &"Soto"
