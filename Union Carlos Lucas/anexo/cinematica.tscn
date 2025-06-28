@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh56x5lc0de22"]
+
+[ext_resource type="Script" uid="uid://b6slhuc2mxu0y" path="res://cinematica.gd" id="1_r33m5"]
+
+[node name="Cinematica" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r33m5")
+
+[node name="VideoPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 917.0
+offset_bottom = 684.0
+expand = true
+
+[connection signal="finished" from="VideoPlayer" to="." method="_on_video_finished"]
