@@ -127,6 +127,7 @@ func iniciar_ataque() -> void:
 func on_player_attack():
 	print("on_player_attack() llamado")
 	if Input.is_action_pressed("cubrirse"):
+		$AudioBloqueo.play()
 		print("¡Bloqueó!")
 	else:
 		vida -= 10
@@ -138,6 +139,7 @@ func on_player_attack():
 
 func recibir_golpe() -> void:
 	reproducir_animacion("PlayerPunched")
+	$AudioGolpe.play()
 	recibiendo_golpe = true
 	await get_tree().create_timer(0.3).timeout
 	recibiendo_golpe = false

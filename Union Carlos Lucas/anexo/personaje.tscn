@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://kyuxx8bvemmx"]
+[gd_scene load_steps=30 format=3 uid="uid://kyuxx8bvemmx"]
 
 [ext_resource type="Texture2D" uid="uid://bd74li7h8vjjk" path="res://Imagenes/Personaje/luchador-1.png-removebg-preview.png" id="1_ck3sb"]
 [ext_resource type="Script" uid="uid://c3sy6cpa0ke6v" path="res://personaje.gd" id="1_cx4ix"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://hurtboxPersonaje.gd" id="8_1y5k2"]
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="9_pqm5q"]
 [ext_resource type="Texture2D" uid="uid://b4dhaatuk60al" path="res://Imagenes/PlayerWalk.png" id="10_2vb47"]
+[ext_resource type="AudioStream" uid="uid://mnmuqkxcbs8j" path="res://assets/audio/Punch 2_1.wav" id="11_2vb47"]
+[ext_resource type="AudioStream" uid="uid://dfr0tet2wsg8c" path="res://assets/audio/Body Fall 3.wav" id="12_xeorn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35kqm"]
 size = Vector2(152.5, 14)
@@ -249,5 +251,11 @@ shape = SubResource("RectangleShape2D_1y5k2")
 libraries = {
 &"": SubResource("AnimationLibrary_pqm5q")
 }
+
+[node name="AudioGolpe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_2vb47")
+
+[node name="AudioBloqueo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_xeorn")
 
 [connection signal="area_entered" from="Golpe/Hitbox" to="Golpe/Hitbox" method="_on_area_entered"]
