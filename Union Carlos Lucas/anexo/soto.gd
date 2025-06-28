@@ -130,6 +130,7 @@ func start_attack():
 func start_block():
 	performing_action = true
 	$AnimatedSprite2D.play("RivalGuard")
+	$AudioBloqueo.play()
 	await get_tree().create_timer(0.8).timeout
 	current_state = State.MOVE
 	performing_action = false
@@ -137,6 +138,7 @@ func start_block():
 func start_hit():
 	performing_action = true
 	$AnimatedSprite2D.play("RivalPunched")
+	$AudioGolpe.play()
 	golpes += 1
 	vida -= 10
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dwoltvcyl3si5"]
+[gd_scene load_steps=31 format=3 uid="uid://dwoltvcyl3si5"]
 
 [ext_resource type="Script" uid="uid://ei4hv6q86ic8" path="res://hurtboxIsra.gd" id="1_143gl"]
 [ext_resource type="Script" uid="uid://d2tm6kbl7ymwk" path="res://isra.gd" id="1_jvro8"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://dlrhxbm7mputt" path="res://hitboxIsra.gd" id="6_u6ws6"]
 [ext_resource type="Texture2D" uid="uid://d4hjta0jf04ga" path="res://Imagenes/Isra/isra_knockout_2-removebg-preview.png" id="7_143gl"]
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="10_lehkq"]
+[ext_resource type="AudioStream" uid="uid://mnmuqkxcbs8j" path="res://assets/audio/Punch 2_1.wav" id="12_7xfwr"]
+[ext_resource type="AudioStream" uid="uid://dfr0tet2wsg8c" path="res://assets/audio/Body Fall 3.wav" id="13_7xfwr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4obd"]
 size = Vector2(32, 31.875)
@@ -294,5 +296,11 @@ animation = &"RivalPunched"
 frame_progress = 0.899669
 
 [node name="punch_cooldown_timer" type="Timer" parent="."]
+
+[node name="AudioGolpe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_7xfwr")
+
+[node name="AudioBloqueo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_7xfwr")
 
 [connection signal="area_entered" from="Golpe/HitArea" to="Golpe/HitArea" method="_on_area_entered"]

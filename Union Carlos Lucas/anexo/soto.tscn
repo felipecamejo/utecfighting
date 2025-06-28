@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cok6d02gxxx3q"]
+[gd_scene load_steps=34 format=3 uid="uid://cok6d02gxxx3q"]
 
 [ext_resource type="Script" uid="uid://d2ek6en8r021u" path="res://soto.gd" id="1_mc208"]
 [ext_resource type="Texture2D" uid="uid://lkhm6dx6tnbx" path="res://Imagenes/Soto/Posicion.png" id="1_vw5i1"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://hitboxSoto.gd" id="7_u73l8"]
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="11_u73l8"]
 [ext_resource type="Texture2D" uid="uid://ccp3o6erw6mv" path="res://Imagenes/SotoWalk.png" id="12_dokrn"]
+[ext_resource type="AudioStream" uid="uid://ca4p7f5plb" path="res://assets/audio/Punch 3_1.wav" id="13_dokrn"]
+[ext_resource type="AudioStream" uid="uid://dfr0tet2wsg8c" path="res://assets/audio/Body Fall 3.wav" id="14_p83ka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7oowv"]
 size = Vector2(27.5, 25)
@@ -317,5 +319,11 @@ animation = &"RivalWalk"
 frame_progress = 0.878909
 
 [node name="punch_cooldown_timer" type="Timer" parent="."]
+
+[node name="AudioGolpe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_dokrn")
+
+[node name="AudioBloqueo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_p83ka")
 
 [connection signal="area_entered" from="Golpe/HitArea" to="Golpe/HitArea" method="_on_area_entered"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfr0tet2wsg8c"
+path="res://.godot/imported/Body Fall 3.wav-2eb6338e1913ef9b39c792f613753296.sample"
+
+[deps]
+
+source_file="res://assets/audio/Body Fall 3.wav"
+dest_files=["res://.godot/imported/Body Fall 3.wav-2eb6338e1913ef9b39c792f613753296.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
