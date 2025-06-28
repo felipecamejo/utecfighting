@@ -1,11 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://cw2xasrrro1o0"]
+[gd_scene load_steps=27 format=3 uid="uid://cw2xasrrro1o0"]
 
-[ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_kuiop"]
-[ext_resource type="PackedScene" uid="uid://kyuxx8bvemmx" path="res://personaje.tscn" id="2_8yg71"]
-[ext_resource type="PackedScene" uid="uid://cok6d02gxxx3q" path="res://soto.tscn" id="3_i1n8g"]
-[ext_resource type="Script" uid="uid://dk7vn31i1nksd" path="res://hud.gd" id="4_ydtn4"]
-[ext_resource type="Script" uid="uid://bdx2mlvp7284u" path="res://texture_rect.gd" id="5_s48l2"]
-[ext_resource type="Texture2D" uid="uid://cewr6qex6887t" path="res://Imagenes/frames_pj.png" id="6_ydtn4"]
+[ext_resource type="Script" uid="uid://c2iam8mx8j81p" path="res://nivel_soto.gd" id="1_n6dft"]
+[ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_tvqhn"]
+[ext_resource type="PackedScene" uid="uid://cok6d02gxxx3q" path="res://soto.tscn" id="2_n6dft"]
+[ext_resource type="PackedScene" uid="uid://kyuxx8bvemmx" path="res://personaje.tscn" id="3_kk1e5"]
+[ext_resource type="Script" uid="uid://dk7vn31i1nksd" path="res://hud.gd" id="4_7kk3m"]
+[ext_resource type="Script" uid="uid://bdx2mlvp7284u" path="res://texture_rect.gd" id="5_3ot86"]
+[ext_resource type="Texture2D" uid="uid://cewr6qex6887t" path="res://Imagenes/frames_pj.png" id="6_6pg7p"]
 
 [sub_resource type="Gradient" id="Gradient_ydtn4"]
 offsets = PackedFloat32Array(0, 0.307018, 1)
@@ -15,35 +16,35 @@ colors = PackedColorArray(1, 1, 0.890196, 1, 1, 1, 0.905882, 0.756863, 1, 1, 1, 
 gradient = SubResource("Gradient_ydtn4")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv2ca"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(1, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s48l2"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(91, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpwqs"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(181, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_afh24"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(271, 202, 90, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poccc"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(1, 103, 90, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_516i8"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(91, 103, 90, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnvlo"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(181, 103, 90, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xtu3r"]
-atlas = ExtResource("6_ydtn4")
+atlas = ExtResource("6_6pg7p")
 region = Rect2(271, 103, 90, 98)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s48l2"]
@@ -115,22 +116,23 @@ colors = PackedColorArray(1, 0.596078, 0.054902, 1, 1, 0.478431, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0m4yf"]
 gradient = SubResource("Gradient_afh24")
 
-[node name="Nivel1" type="Node2D"]
+[node name="NivelSoto" type="Node2D"]
+script = ExtResource("1_n6dft")
 
-[node name="EscenarioPrincipal" parent="." instance=ExtResource("1_kuiop")]
+[node name="EscenarioPrincipal" parent="." instance=ExtResource("1_tvqhn")]
 position = Vector2(-130, 35)
 
-[node name="soto" parent="." instance=ExtResource("3_i1n8g")]
+[node name="soto" parent="." instance=ExtResource("2_n6dft")]
 position = Vector2(691, 448)
 collision_layer = 2
 
-[node name="personaje" parent="." instance=ExtResource("2_8yg71")]
+[node name="personaje" parent="." instance=ExtResource("3_kk1e5")]
 unique_name_in_owner = true
 position = Vector2(191, 633)
 collision_layer = 2
 
 [node name="Hud" type="CanvasLayer" parent="."]
-script = ExtResource("4_ydtn4")
+script = ExtResource("4_7kk3m")
 
 [node name="TextureRect" type="TextureRect" parent="Hud"]
 offset_left = 916.0
@@ -139,7 +141,7 @@ offset_right = 1172.0
 offset_bottom = 919.0
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_s48l2")
-script = ExtResource("5_s48l2")
+script = ExtResource("5_3ot86")
 
 [node name="PlayerHud" type="Control" parent="Hud"]
 layout_mode = 3
@@ -239,3 +241,6 @@ position = Vector2(345.42, 66)
 scale = Vector2(1.34063, 1.28802)
 sprite_frames = SubResource("SpriteFrames_s48l2")
 animation = &"Soto"
+
+[connection signal="game_over_triggered" from="soto" to="." method="_on_soto_game_over_triggered"]
+[connection signal="game_over_triggered" from="personaje" to="." method="_on_personaje_game_over_triggered"]
