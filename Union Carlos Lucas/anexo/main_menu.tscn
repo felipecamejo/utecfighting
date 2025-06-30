@@ -608,6 +608,7 @@ scale = Vector2(1.7093, 1.64286)
 texture = ExtResource("3_glbon")
 
 [node name="Creditos" type="Label" parent="UI/MainMenu"]
+layout_mode = 0
 offset_left = 756.0
 offset_top = 570.0
 offset_right = 1157.0

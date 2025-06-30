@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dq5yp61mn1wdy"]
+[gd_scene load_steps=32 format=3 uid="uid://dq5yp61mn1wdy"]
 
 [ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_5obcu"]
 [ext_resource type="Script" uid="uid://cn1d3sqlog8ho" path="res://nivel_isra.gd" id="1_7owii"]
@@ -48,6 +48,22 @@ region = Rect2(181, 103, 90, 98)
 atlas = ExtResource("6_7owii")
 region = Rect2(271, 103, 90, 98)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7owii"]
+atlas = ExtResource("6_7owii")
+region = Rect2(2, 0, 84, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyxxu"]
+atlas = ExtResource("6_7owii")
+region = Rect2(93, 0, 84, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu2y2"]
+atlas = ExtResource("6_7owii")
+region = Rect2(184, 0, 84, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twrhq"]
+atlas = ExtResource("6_7owii")
+region = Rect2(275, 0, 84, 99)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qu2y2"]
 animations = [{
 "frames": [{
@@ -82,6 +98,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"caraPj",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyxxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu2y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twrhq")
+}],
+"loop": true,
+"name": &"isra",
 "speed": 5.0
 }, {
 "frames": [],
@@ -125,6 +158,13 @@ position = Vector2(-130, 35)
 
 [node name="Isra" parent="." instance=ExtResource("2_on1om")]
 position = Vector2(727, 443)
+vida = 50
+stamina = 100
+team = 2
+speed = 100
+attack_distance = 100
+block_chance = 0.3
+retreat_distance_multiplier = 2.5
 
 [node name="personaje" parent="." instance=ExtResource("3_aljxk")]
 position = Vector2(175, 633)
@@ -218,7 +258,7 @@ offset_top = 3.0
 offset_right = 308.0
 offset_bottom = 26.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Soto"
+text = "Isra"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
@@ -238,7 +278,7 @@ texture_progress = SubResource("GradientTexture2D_2h62y")
 position = Vector2(345.42, 66)
 scale = Vector2(1.34063, 1.28802)
 sprite_frames = SubResource("SpriteFrames_qu2y2")
-animation = &"Soto"
+animation = &"isra"
 
 [node name="AudioAmbiente" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_7rqgk")

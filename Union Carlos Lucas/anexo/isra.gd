@@ -6,10 +6,12 @@ var golpes = 0
 var performing_action := false
 signal game_over_triggered
 
-@onready var barraVida = $"../Hud/RivalHud/barraVida"
-@onready var barraStamina = $"../Hud/RivalHud/barraStamina"
+@onready var barraVida = $"../Hud/RivalHud/Vida"
 @onready var punch_cooldown_timer: Timer = $punch_cooldown_timer
-@export var vida := 10
+
+@onready var spriteHud = $"../Hud/RivalHud/AnimatedSprite2D"
+
+@export var vida := 50
 @export var stamina := 100
 
 @export var team: int = 2
@@ -30,9 +32,20 @@ func _ready():
 
 var ya_decidio_timer := false
 
-func _physics_process(_delta):
-	#barraVida.value = vida
+func actualizar_SpriteHud():
+	if vida <= 25 / 2 :
+		spriteHud.frame = 3
+	elif vida <= 50 / 2:
+		spriteHud.frame = 2
+	elif vida <= 75 / 2:
+		spriteHud.frame = 1
+	else:
+		spriteHud.frame = 0
 
+
+func _physics_process(_delta):
+	barraVida.value = vida * 2
+	actualizar_SpriteHud()
 	_ocultar_no_animatedsprites()
 	if performing_action:
 		return
