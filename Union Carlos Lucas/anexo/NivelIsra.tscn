@@ -158,13 +158,6 @@ position = Vector2(-130, 35)
 
 [node name="Isra" parent="." instance=ExtResource("2_on1om")]
 position = Vector2(727, 443)
-vida = 50
-stamina = 100
-team = 2
-speed = 100
-attack_distance = 100
-block_chance = 0.3
-retreat_distance_multiplier = 2.5
 
 [node name="personaje" parent="." instance=ExtResource("3_aljxk")]
 position = Vector2(175, 633)

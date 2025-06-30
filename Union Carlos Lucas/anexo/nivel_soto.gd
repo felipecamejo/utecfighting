@@ -9,7 +9,7 @@ func _ready():
 
 func _on_soto_game_over_triggered() -> void:
 	print("¡Ganaste el nivel!")
-	cargar_cinematica("res://assets/videos/Xacti-AC8EX-Sample_video-001.ogv.480p.vp9.ogv", "res://main_menu.tscn")
+	cargar_cinematica("res://assets/videos/VideoGanarMejorado.ogv", "res://main_menu.tscn")
 
 
 func _on_personaje_game_over_triggered() -> void:
