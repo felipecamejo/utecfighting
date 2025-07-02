@@ -8,14 +8,15 @@ extends Control
 @onready var salir_btn: Button = $VBoxContainer/Salir
 
 func _ready():
-	jugar_btn.pressed.connect(_on_jugar_pressed)
-	salir_btn.pressed.connect(_on_salir_pressed)
-	video_player.finished.connect(_on_video_finished)
+	pass
+	#jugar_btn.pressed.connect(_on_jugar_pressed)
+	#salir_btn.pressed.connect(_on_salir_pressed)
+	#video_player.finished.connect(_on_video_finished)
 
 
 func _on_jugar_pressed():
 	hide_buttons()
-	play_intro()
+	mostrar_seleccion_dificultad()
 
 func _on_salir_pressed():
 	get_tree().quit()
@@ -35,7 +36,15 @@ func play_intro():
 func _on_video_finished():
 	print("Cambiando a:", nivel_1_path)
 	get_tree().change_scene_to_file(nivel_1_path)
-
 	
+func mostrar_seleccion_dificultad():
+	var selector = preload("res://SeleccionDificultad.tscn").instantiate()
+	add_child(selector)
+	
+	selector.dificultad_seleccionada.connect(_on_dificultad_elegida)
+	
+func _on_dificultad_elegida(nivel: String):
+	Global.dificultad = nivel
+	play_intro()
 	
 	

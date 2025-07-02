@@ -6,6 +6,11 @@ extends Node2D
 func _ready():
 	enemigo.game_over_triggered.connect(_on_soto_game_over_triggered)
 	jugador.game_over_triggered.connect(_on_personaje_game_over_triggered)
+	
+	if Global.dificultad == "facil":
+		$soto.vida = 50
+	elif Global.dificultad == "dificil":
+		$soto.vida = 100
 
 func _on_soto_game_over_triggered() -> void:
 	print("¡Ganaste el nivel!")

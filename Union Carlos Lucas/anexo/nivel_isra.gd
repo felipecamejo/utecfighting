@@ -7,6 +7,11 @@ func _ready():
 	enemigo.game_over_triggered.connect(_on_isra_game_over_triggered)
 	jugador.game_over_triggered.connect(_on_personaje_game_over_triggered)
 	
+	if Global.dificultad == "facil":
+		$Isra.vida = 20
+	elif Global.dificultad == "dificil":
+		$Isra.vida = 50
+	
 	
 func _on_personaje_game_over_triggered() -> void:
 	print("¡Perdiste el nivel!")

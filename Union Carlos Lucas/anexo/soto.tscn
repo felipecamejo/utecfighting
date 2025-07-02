@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="11_u73l8"]
 [ext_resource type="Texture2D" uid="uid://ccp3o6erw6mv" path="res://Imagenes/SotoWalk.png" id="12_dokrn"]
 [ext_resource type="AudioStream" uid="uid://ca4p7f5plb" path="res://assets/audio/Punch 3_1.wav" id="13_dokrn"]
-[ext_resource type="AudioStream" uid="uid://dfr0tet2wsg8c" path="res://assets/audio/Body Fall 3.wav" id="14_p83ka"]
+[ext_resource type="AudioStream" uid="uid://dqu2vadpey70y" path="res://assets/audio/bloqueo.wav" id="14_p83ka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7oowv"]
 size = Vector2(27.5, 25)

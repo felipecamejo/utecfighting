@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d4hjta0jf04ga" path="res://Imagenes/Isra/isra_knockout_2-removebg-preview.png" id="7_143gl"]
 [ext_resource type="Texture2D" uid="uid://dm5e7boj353tg" path="res://Imagenes/spritesheet.webp" id="10_lehkq"]
 [ext_resource type="AudioStream" uid="uid://mnmuqkxcbs8j" path="res://assets/audio/Punch 2_1.wav" id="12_7xfwr"]
-[ext_resource type="AudioStream" uid="uid://dfr0tet2wsg8c" path="res://assets/audio/Body Fall 3.wav" id="13_7xfwr"]
+[ext_resource type="AudioStream" uid="uid://dqu2vadpey70y" path="res://assets/audio/bloqueo.wav" id="13_7xfwr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4obd"]
 size = Vector2(32, 31.875)
