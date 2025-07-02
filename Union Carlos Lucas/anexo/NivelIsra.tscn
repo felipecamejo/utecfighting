@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dq5yp61mn1wdy"]
+[gd_scene load_steps=31 format=3 uid="uid://dq5yp61mn1wdy"]
 
 [ext_resource type="PackedScene" uid="uid://cdde6cofq3xh8" path="res://escenario_principal.tscn" id="1_5obcu"]
 [ext_resource type="Script" uid="uid://cn1d3sqlog8ho" path="res://nivel_isra.gd" id="1_7owii"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://dk7vn31i1nksd" path="res://hud.gd" id="4_birvf"]
 [ext_resource type="Script" uid="uid://bdx2mlvp7284u" path="res://texture_rect.gd" id="5_7rqgk"]
 [ext_resource type="Texture2D" uid="uid://cewr6qex6887t" path="res://Imagenes/frames_pj.png" id="6_7owii"]
-[ext_resource type="AudioStream" uid="uid://dq0gc83ewvnqc" path="res://assets/audio/Level 2 (Loop).wav" id="7_7rqgk"]
 
 [sub_resource type="Gradient" id="Gradient_s48l2"]
 offsets = PackedFloat32Array(0, 0.307018, 1)
@@ -272,10 +271,6 @@ position = Vector2(345.42, 66)
 scale = Vector2(1.34063, 1.28802)
 sprite_frames = SubResource("SpriteFrames_qu2y2")
 animation = &"isra"
-
-[node name="AudioAmbiente" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_7rqgk")
-volume_db = -40.288
 
 [connection signal="game_over_triggered" from="Isra" to="." method="_on_isra_game_over_triggered"]
 [connection signal="game_over_triggered" from="personaje" to="." method="_on_personaje_game_over_triggered"]
