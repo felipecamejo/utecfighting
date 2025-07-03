@@ -6,9 +6,10 @@ extends Control
 @onready var video_player: VideoStreamPlayer = $VideoPlayer
 @onready var jugar_btn: Button = $VBoxContainer/Jugar
 @onready var salir_btn: Button = $VBoxContainer/Salir
+@onready var audio_player: AudioStreamPlayer = $MenuMusic
 
 func _ready():
-	pass
+	audio_player.finished.connect(_on_audio_finished)
 	#jugar_btn.pressed.connect(_on_jugar_pressed)
 	#salir_btn.pressed.connect(_on_salir_pressed)
 	#video_player.finished.connect(_on_video_finished)
@@ -47,4 +48,7 @@ func _on_dificultad_elegida(nivel: String):
 	Global.dificultad = nivel
 	play_intro()
 	
+func _on_audio_finished():
+	print("Audio terminado. Reiniciando...")
+	audio_player.play()  # Vuelve a reproducir
 	

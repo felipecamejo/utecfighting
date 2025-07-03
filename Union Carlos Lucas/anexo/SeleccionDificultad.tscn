@@ -583,6 +583,7 @@ scale = Vector2(7.17969, 5.375)
 texture = ExtResource("2_4hxyb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 59.0
 offset_top = 511.0
 offset_right = 197.0
@@ -595,6 +596,7 @@ scale = Vector2(1.75581, 1.51905)
 texture = ExtResource("3_4cswv")
 
 [node name="Creditos" type="Label" parent="."]
+layout_mode = 0
 offset_left = 769.0
 offset_top = 559.0
 offset_right = 1170.0
@@ -609,6 +611,7 @@ Carlos Gil
 Felipe Camejo"
 
 [node name="SeleccionDificultad" type="Label" parent="."]
+layout_mode = 0
 offset_left = 312.0
 offset_top = 472.0
 offset_right = 638.0
@@ -620,6 +623,7 @@ theme_override_font_sizes/font_size = 30
 text = "Seleccione la Dificultad"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = -3.0
 offset_top = 565.0
 offset_right = 910.0
@@ -633,7 +637,7 @@ size_flags_vertical = 4
 focus_neighbor_top = NodePath("../Dificil")
 theme = ExtResource("6_8r1be")
 theme_override_font_sizes/font_size = 24
-text = "Nenita"
+text = "Fácil"
 
 [node name="Dificil" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 32)
@@ -644,4 +648,4 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../Facil")
 theme = ExtResource("6_8r1be")
 theme_override_font_sizes/font_size = 24
-text = "Macho"
+text = "Normal"
