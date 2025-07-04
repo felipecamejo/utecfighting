@@ -2,6 +2,7 @@ extends Control
 
 @export var intro_video: VideoStream
 @export var nivel_1_path: String = "res://NivelIsra.tscn"
+@export var cinematica_ref: PackedScene = preload("res://cinematica.tscn")
 
 @onready var video_player: VideoStreamPlayer = $VideoPlayer
 @onready var jugar_btn: Button = $VBoxContainer/Jugar

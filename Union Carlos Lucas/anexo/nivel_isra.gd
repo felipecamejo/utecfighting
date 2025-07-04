@@ -24,7 +24,7 @@ func _on_isra_game_over_triggered() -> void:
 
 func cargar_cinematica(ruta_video: String, siguiente: String):
 	await get_tree().create_timer(7.0).timeout
-	var cine = preload("res://Cinematica.tscn").instantiate()
+	var cine = load("res://cinematica.tscn").instantiate()
 	cine.video = load(ruta_video)
 	cine.siguiente_escena = siguiente
 	get_tree().root.add_child(cine)
