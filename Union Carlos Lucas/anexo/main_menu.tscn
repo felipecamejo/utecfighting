@@ -661,10 +661,6 @@ theme = ExtResource("4_jix8l")
 theme_override_font_sizes/font_size = 24
 text = "Salir"
 
-[node name="Config" type="TabContainer" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [connection signal="finished" from="UI/MainMenu/VideoPlayer" to="UI/MainMenu" method="_on_video_finished"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Jugar" to="UI/MainMenu" method="_on_jugar_pressed"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Salir" to="UI/MainMenu" method="_on_salir_pressed"]
