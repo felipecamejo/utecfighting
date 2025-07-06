@@ -20,7 +20,7 @@ func _on_personaje_game_over_triggered() -> void:
 	
 func _on_isra_game_over_triggered() -> void:
 	print("¡Ganaste el nivel!")
-	cargar_cinematica("res://assets/videos/Xacti-AC8EX-Sample_video-001.ogv.480p.vp9.ogv", "res://NivelSoto.tscn")
+	cargar_cinematica("res://assets/videos/VideoCambioSoto.ogv", "res://NivelSoto.tscn")
 
 func cargar_cinematica(ruta_video: String, siguiente: String):
 	await get_tree().create_timer(7.0).timeout
